@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+skinparam titleBorderRoundCorner 15
+skinparam titleFontSize 25
+skinparam titleBorderThickness 2
+skinparam titleBorderColor black
+skinparam titleBackgroundColor white
+skinparam padding 5
+
+title Ventura RH: Use cases
+
+left to right direction
+:Administrador: as Admin
+:Empresa cliente: as Client
+:Candidato: as Candidate
+
+package "Ventura HR" {
+  usecase "Publicar vaga" as publish
+  usecase "Especificar vaga" as specify
+  usecase "Selecionar vaga" as select
+  usecase "Preencher vaga" as fill
+  usecase "Pesquisar vaga" as search
+  usecase "Renovar vaga" as renew
+  usecase "Finalizar vaga" as finish
+  usecase "Gerar relatório" as report
+  usecase "Controlar acesso" as accessControl
+  usecase "Controlar usuários" as userControl
+}
+
+publish .. specify
+
+Client --> publish
+Client --> renew
+Client --> finish
+Candidate --> select
+Candidate --> fill
+Candidate --> search
+Admin --> report
+Admin --> accessControl
+Admin --> userControl
+
+note left of Admin
+Analisa relatórios básicos de acesso
+do sistema, contendo informações sobre
+usuários, empresas e vagas.
+end note
+
+note left of Client
+Um dos dois atores principais do sistema,
+é responsável por publicar vagas e por
+estabelecer seus critérios tanto descritivos
+como de aceite do candidato. Também é responsável
+por administrar o resultado das coletas de
+candidatos, renovando ou finalizando a divulgação
+da vaga após a data limite.
+end note
+
+note left of Candidate
+Segundo ator principal, pesquisa a vaga pelo
+cargo desejado além de outros critérios auxiliares.
+O mesmo deverá preencher os critérios da vaga de
+acordo com seu nível de experiência e submeter
+suas informações.
+end note
+@enduml

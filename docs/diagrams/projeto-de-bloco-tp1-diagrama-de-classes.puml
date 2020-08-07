@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+'https://plantuml.com/ie-diagram
+
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+skinparam titleBorderRoundCorner 15
+skinparam titleFontSize 25
+skinparam titleBorderThickness 2
+skinparam titleBorderColor black
+skinparam titleBackgroundColor white
+skinparam padding 5
+skinparam nodesep 80
+skinparam ranksep 75
+skinparam padding 5
+
+title Ventura RH: Class diagram
+
+top to bottom direction
+
+abstract class Usuário
+class EmpresaCliente
+class Candidato
+class Candidatura
+class Administrador
+class Vaga
+class Relatório
+
+Usuário <|-- Candidato
+Usuário <|-- EmpresaCliente
+Usuário <|-- Administrador
+EmpresaCliente  "1" -- "0...*" Vaga
+Vaga "1" -- "0...*                      " Candidatura
+Candidato "1  " -- "0...*          " Candidatura
+Administrador "1" -- "0...*" Relatório
+@enduml
