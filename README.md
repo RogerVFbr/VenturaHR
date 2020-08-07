@@ -15,6 +15,8 @@ Tecnologias que devem estar instaladas e/ou disponíveis:
 * [PlantUML](https://www.plantuml.com) - Ferramenta para criação de UML.
 
 ## Organização de pastas
+
+### Pasta "docs"
 A pasta **docs** contém toda documentação descritiva do projeto, bem como material de referência.
 A organização em subpastas está descrita abaixo:
 
