@@ -22,16 +22,21 @@ top to bottom direction
 abstract class Usuário
 class EmpresaCliente
 class Candidato
-class Candidatura
 class Administrador
 class Vaga
+class Resposta
+class Critério
+class RespostaCritério
 class Relatório
 
 Usuário <|-- Candidato
 Usuário <|-- EmpresaCliente
 Usuário <|-- Administrador
-EmpresaCliente  "1" -- "0...*" Vaga
-Vaga "1" -- "0...*                      " Candidatura
-Candidato "1  " -- "0...*          " Candidatura
-Administrador "1" -- "0...*" Relatório
+EmpresaCliente -- "1..*" Vaga
+Vaga *-- "0..*" Critério
+RespostaCritério "0..*" -- Critério
+RespostaCritério "0..*" --* Resposta
+Candidato -- "0..*" Resposta
+Vaga -- "0..*" Resposta
+Administrador "1" -- "0..*" Relatório
 @enduml
