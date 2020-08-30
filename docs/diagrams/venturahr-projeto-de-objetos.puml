@@ -1,0 +1,175 @@
+@startuml
+'https://plantuml.com/class-diagram
+'https://plantuml.com/ie-diagram
+
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+skinparam titleBorderRoundCorner 15
+skinparam titleFontSize 25
+skinparam titleBorderThickness 2
+skinparam titleBorderColor black
+skinparam titleBackgroundColor white
+skinparam padding 5
+skinparam nodesep 80
+skinparam ranksep 75
+skinparam padding 5
+
+title Ventura RH: Projeto de Objetos
+
+top to bottom direction
+
+abstract class Usuário {
+    # Long id
+    # String name
+    # Long getId()
+    # setId(Long id)
+    # String getName()
+    # setName(Long name)
+}
+
+class EmpresaCliente {
+    - String cnpj
+    - List<Vagas> vagas
+    + String getCnpj()
+    + setCnpj(Strin cnpj)
+    + List<Vagas> getVagas()
+    + setVagas(List<Vagas>)
+    + addVaga(Vaga vaga)
+    + deleteVaga(Long id)
+
+}
+
+class Candidato {
+    - String identidade
+    - List<Reposta> respostas
+    + String getIdentidade()
+    + setIdentidade(String identidade)
+    + List<Resposta> getRespostas()
+    + setRespostas(List<Resposta> respostas)
+    + addResposta(Resposta resposta)
+    + deleteResposta(Long id)
+}
+
+class Administrador {
+    - String identidade
+    - List<Relatório> relatórios
+    + String getIdentidade()
+    + setIdentidade(String identidade)
+    + List<Relatório> getRelatórios()
+    + setRelatórios(List<Relatório> respostas)
+    + addRelatório(Relatório resposta)
+    + deleteRelatório(Long id)
+}
+
+class Vaga {
+    - Long id
+    - String shortDescription
+    - String longDescription
+    - List<Critério> critérios
+    - List<Resposta> respostas
+    - Enum<EstadoDeVaga> estado
+    - LocalDateTime creationDate
+    - LocalDateTime expirationDate
+    + Long getId()
+    + setId(Long id)
+    + String getShortDescription()
+    + setShortDescriptio(String shortDescription)
+    + String getLongDescription()
+    + setLongDescription(String longDescription)
+    + List<Critério> getCritérios()
+    + setCritérios(List<Critério> critérios)
+    + addCritério(Critério critério)
+    + deleteCritério(Long id)
+    + List<Resposta> getRespostas()
+    + setRespostas(List<Resposta> respostas)
+    + addResposta(Resposta resposta)
+    + deleteResposta(Long id)
+    + EstadoDeVaga getEstado()
+    + setEstado(EstadoDeVaga estado)
+    + Double getPerfilDeOportunidade()
+    + LocalDateTime getCreationDate()
+    + setCreationDate(LocalDateTime creationDate)
+    + LocalDateTime getExpirationDate()
+    + setExpirationDate(LocalDateTime expirationDate)
+}
+
+class Resposta {
+    - Long id
+    - Long vagaId
+    - Long candidatoId
+    - List<RespostaCritério> respostaCritérios
+    + Long getId()
+    + setId(Long id)
+    + Long getVagaId()
+    + setVagaId(Long id)
+    + Long getCandidatoId()
+    + setCandidatoId(Long id)
+    + List<RespostaCritério> getRespostaCritérios()
+    + setRespostaCritérios(List<RespostaCritério> respostaCritérios)
+    + addRespostaCritérios(RespostaCritério respostaCritério)
+    + deleteRespostaCritérios(Long id)
+}
+
+class Critério {
+    - Long id
+    - Long vagaId
+    - String name
+    - String description
+    - Enum<Pmd> pmd
+    - Enum<Peso> peso
+    + Long getId()
+    + setId(Long id)
+    + Long getVagaId()
+    + setVagaId(Long id)
+    + String getName()
+    + setName(String name)
+    + String getDescription()
+    + setDescription(String description)
+    + Enum<Pmd> getPmd()
+    + setPmd(Enum<Pmd> pmd)
+    + Enum<Peso> getPeso()
+    + setPeso(Enum<Peso> peso)
+
+}
+
+class RespostaCritério {
+    - Long id
+    - Long critérioId
+    - Enum<NívelDeConhecimento> nívelDeConhecimento
+    + Long getId()
+    + setId(Long id)
+    + Long getCritérioId()
+    + setCritérioId(Long id)
+    + Enum<NívelDeConhecimento> getNívelDeconhecimento()
+    + setNivelDeConhecimento(Enum<NívelDeConhecimento> nívelDeConhecimento)
+}
+
+class Relatório {
+    - Long id
+    - Long administradorId
+    - List<Usuários> usuários
+    - List<Vagas> vagas
+    + Long getId()
+    + setId(Long id)
+    + Long getAdministradorId()
+    + setAdministradorId(Long id)
+    + List<Usuário> getUsuários()
+    + setUsuários(List<Usuário> usuários)
+    + addUsuário(Usuário usuário)
+    + List<Vaga> getVagas()
+    + setVagas(List<Vaga> vagas)
+    + addVaga(Vaga vaga)
+}
+
+Usuário <|-- Candidato
+Usuário <|-- EmpresaCliente
+Usuário <|-- Administrador
+EmpresaCliente -- "1..*" Vaga
+Vaga *-- "0..*" Critério
+RespostaCritério "0..*" -- Critério
+RespostaCritério "0..*" --* Resposta
+Candidato -- "0..*" Resposta
+Vaga -- "0..*" Resposta
+Administrador "1" -- "0..*" Relatório
+@enduml
