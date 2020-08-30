@@ -1,0 +1,62 @@
+@startuml
+
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+skinparam titleBorderRoundCorner 15
+skinparam titleFontSize 25
+skinparam titleBorderThickness 2
+skinparam titleBorderColor black
+skinparam titleBackgroundColor white
+skinparam padding 5
+skinparam nodesep 80
+skinparam ranksep 75
+skinparam padding 5
+
+actor EmpresaCliente
+boundary FrontEnd
+control VagaController
+entity Vaga
+database VagaRepository
+
+== Empresa acessa área de registro de vaga ==
+
+activate EmpresaCliente
+activate FrontEnd
+
+EmpresaCliente -> FrontEnd : 1: preencher()
+EmpresaCliente -> FrontEnd : 2: submeter()
+FrontEnd -> VagaController : 2.1: request()
+
+activate VagaController
+
+VagaController -> VagaController : 2.1.1: validate()
+VagaController -> Vaga : <<create>> \n 2.1.2: Vaga()
+
+activate Vaga
+
+Vaga --> VagaController : vaga
+VagaController -> Vaga : 2.1.3: setters()
+Vaga --> VagaController
+
+deactivate Vaga
+
+VagaController -> VagaRepository : <<create>> \n 2.1.4: VagaRepository()
+
+activate VagaRepository
+
+VagaRepository --> VagaController : vagaRepository
+VagaController -> VagaRepository : 2.1.5: inserir()
+VagaRepository --> VagaController : confirm
+
+deactivate VagaRepository
+
+VagaController --> FrontEnd
+
+deactivate VagaController
+
+FrontEnd --> EmpresaCliente
+
+== Conclusão do processo de registro de vaga ==
+
+@enduml
