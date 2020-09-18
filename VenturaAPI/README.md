@@ -1,6 +1,6 @@
-# SceneManager
+# VenturaHR
 
-API para gerenciamento do estado das cenas salvas em banco.
+API para gerenciamento do backend do aplicativo VenturaHR.
 
 ## Introdução
 
