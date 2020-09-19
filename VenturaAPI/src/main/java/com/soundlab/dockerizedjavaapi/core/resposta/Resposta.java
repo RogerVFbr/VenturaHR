@@ -1,6 +1,8 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.resposta;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "respostas")
-public class Resposta {
+public class Resposta extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -40,9 +42,8 @@ public class Resposta {
     @JoinColumn(name = "resposta_id")
     List<RespostaCriterio> respostasCriterios;
 
-    @Column(name = "date_created")
-    private LocalDateTime dateCreated;
-
-    @Column(name = "date_modified")
-    private LocalDateTime dateModified;
+    @JsonIgnore
+    public Long getVagaId() {
+        return this.vagaId;
+    }
 }

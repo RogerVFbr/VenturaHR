@@ -1,4 +1,6 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.user;
+
+import com.soundlab.dockerizedjavaapi.core.vaga.Vaga;
 
 import java.util.List;
 

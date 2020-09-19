@@ -1,4 +1,8 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.resposta;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
+import com.soundlab.dockerizedjavaapi.core.Level;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +18,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "resposta_criterio")
-public class RespostaCriterio {
+public class RespostaCriterio extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,4 +38,9 @@ public class RespostaCriterio {
 
     @Column(name = "date_modified")
     private LocalDateTime dateModified;
+
+    @JsonIgnore
+    public Long getRespostaId() {
+        return this.respostaId;
+    }
 }

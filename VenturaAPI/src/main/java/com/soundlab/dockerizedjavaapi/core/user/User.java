@@ -1,6 +1,7 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.user;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -20,7 +21,7 @@ import lombok.Data;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType=DiscriminatorType.STRING)
-public abstract class User {
+public abstract class User extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,9 +36,8 @@ public abstract class User {
     @Column(name = "type", insertable = false, updatable = false)
     private UserType userType;
 
-    @Column(name = "date_created")
-    private LocalDateTime dateCreated;
-
-    @Column(name = "date_modified")
-    private LocalDateTime dateModified;
+    @JsonIgnore
+    public UserType getUserType() {
+        return this.userType;
+    }
 }

@@ -1,8 +1,8 @@
 package com.soundlab.dockerizedjavaapi.repositories;
 
-import com.soundlab.dockerizedjavaapi.models.Candidato;
-import com.soundlab.dockerizedjavaapi.models.User;
-import com.soundlab.dockerizedjavaapi.models.UserType;
+import com.soundlab.dockerizedjavaapi.core.user.Candidato;
+import com.soundlab.dockerizedjavaapi.core.user.User;
+import com.soundlab.dockerizedjavaapi.core.user.UserType;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

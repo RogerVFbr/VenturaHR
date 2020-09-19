@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.controllers;
 
-import com.soundlab.dockerizedjavaapi.models.Admin;
+import com.soundlab.dockerizedjavaapi.core.user.Admin;
 import com.soundlab.dockerizedjavaapi.services.AdminService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;

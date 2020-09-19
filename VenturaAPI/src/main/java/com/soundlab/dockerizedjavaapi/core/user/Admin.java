@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.user;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

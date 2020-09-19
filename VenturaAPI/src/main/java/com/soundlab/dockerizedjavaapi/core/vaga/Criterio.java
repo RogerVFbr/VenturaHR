@@ -1,6 +1,7 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.vaga;
 
-import java.time.LocalDateTime;
+import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
+import com.soundlab.dockerizedjavaapi.core.Level;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "criterio")
-public class Criterio {
+public class Criterio extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,10 +35,4 @@ public class Criterio {
 
     @Column(name = "weight")
     private Level weight;
-
-    @Column(name = "date_created")
-    private LocalDateTime dateCreated;
-
-    @Column(name = "date_modified")
-    private LocalDateTime dateModified;
 }

@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.user;
 
 public enum UserType {
     CANDIDATO(0, "candidato"),

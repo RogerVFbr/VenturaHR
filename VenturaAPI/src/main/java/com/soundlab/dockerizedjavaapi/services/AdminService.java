@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.services;
 
-import com.soundlab.dockerizedjavaapi.models.Admin;
+import com.soundlab.dockerizedjavaapi.core.user.Admin;
 import com.soundlab.dockerizedjavaapi.repositories.AdminRepository;
 
 import org.springframework.stereotype.Service;

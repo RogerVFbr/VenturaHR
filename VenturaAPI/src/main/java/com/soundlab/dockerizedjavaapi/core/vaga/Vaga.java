@@ -1,4 +1,9 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core.vaga;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
+import com.soundlab.dockerizedjavaapi.core.resposta.Resposta;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +23,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "vagas")
-public class Vaga {
+public class Vaga extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -49,4 +54,15 @@ public class Vaga {
 
     @Column(name = "date_modified")
     private LocalDateTime dateModified;
+
+    @JsonProperty("respostasCount")
+    public int getRespostasCount(){
+        return respostas.size();
+    }
+
+    @JsonIgnore
+    public Long getOwnerId() {
+        return this.ownerId;
+    }
+
 }

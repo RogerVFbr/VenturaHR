@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.models;
+package com.soundlab.dockerizedjavaapi.core;
 
 public enum Level {
     MUITO_BAIXO (0, "muito baixo"),
