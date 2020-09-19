@@ -49,7 +49,7 @@ CREATE TABLE users
     id            INT AUTO_INCREMENT PRIMARY KEY,
     name          VARCHAR(250)                                  NOT NULL,
     document_id   VARCHAR(250)                                  NOT NULL,
-    type          ENUM ('candidato', 'empresa', 'admnistrador') NOT NULL,
+    type          ENUM ('candidato', 'empresa', 'administrador') NOT NULL,
     date_created  TIMESTAMP                                              DEFAULT CURRENT_TIMESTAMP NOT NULL,
     date_modified TIMESTAMP                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -62,8 +62,8 @@ VALUES (1, 'Eliodoro Gonçalves Fonseca', '09889009', 'candidato'),
        (6, 'Santana Óleo e Gás', '3425555', 'empresa'),
        (7, 'SmartTrends', '56867865878', 'empresa'),
        (8, 'B2Y Retail', '45635643564', 'empresa'),
-       (9, 'Hans Monen', '789679879', 'admnistrador'),
-       (10, 'Leandro Medina', '456745675467', 'admnistrador');
+       (9, 'Hans Monen', '789679879', 'administrador'),
+       (10, 'Leandro Medina', '456745675467', 'administrador');
 
 DROP TABLE IF EXISTS vagas;
 CREATE TABLE vagas
@@ -90,24 +90,55 @@ VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'aberto'),
 DROP TABLE IF EXISTS resposta;
 CREATE TABLE resposta
 (
-    id               INT AUTO_INCREMENT PRIMARY KEY,
-    vaga_id          INT                          NOT NULL,
-    candidato_id     INT                          NOT NULL,
-    curriculo_url    VARCHAR(250)                 NOT NULL,
-    text_content     VARCHAR(250)                 NOT NULL,
-    date_created     TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified    TIMESTAMP                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    vaga_id       INT          NOT NULL,
+    candidato_id  INT          NOT NULL,
+    curriculo_url VARCHAR(250) NOT NULL,
+    text_content  VARCHAR(250) NOT NULL,
+    date_created  TIMESTAMP             DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 INSERT INTO resposta (id, vaga_id, candidato_id, curriculo_url, text_content)
-VALUES (1, 1, 1, 'MockCurriculumUrl', 'MockTextContent'),
-       (2, 2, 2, 'MockCurriculumUrl', 'MockTextContent'),
-       (3, 3, 4, 'MockCurriculumUrl', 'MockTextContent'),
-       (4, 4, 4, 'MockCurriculumUrl', 'MockTextContent'),
-       (5, 5, 5, 'MockCurriculumUrl', 'MockTextContent'),
-       (6, 6, 1, 'MockCurriculumUrl', 'MockTextContent'),
-       (7, 7, 2, 'MockCurriculumUrl', 'MockTextContent'),
-       (8, 8, 3, 'MockCurriculumUrl', 'MockTextContent'),
-       (9, 9, 4, 'MockCurriculumUrl', 'MockTextContent');
+VALUES (1, 1, 1, 'https://www.mockdomain.com/MockCurriculumUrl1', 'MockTextContent1'),
+       (2, 2, 2, 'https://www.mockdomain.com/MockCurriculumUrl2', 'MockTextContent2'),
+       (3, 3, 4, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent3'),
+       (4, 4, 4, 'https://www.mockdomain.com/MockCurriculumUrl4', 'MockTextContent4'),
+       (5, 5, 5, 'https://www.mockdomain.com/MockCurriculumUrl5', 'MockTextContent5'),
+       (6, 6, 1, 'https://www.mockdomain.com/MockCurriculumUrl1', 'MockTextContent6'),
+       (7, 7, 2, 'https://www.mockdomain.com/MockCurriculumUrl2', 'MockTextContent7'),
+       (8, 8, 3, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent8'),
+       (9, 9, 4, 'https://www.mockdomain.com/MockCurriculumUrl4', 'MockTextContent9');
+
+DROP TABLE IF EXISTS resposta_criterio;
+CREATE TABLE resposta_criterio
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    criterio_id   INT                            NOT NULL,
+    level         ENUM ('1', '2', '3', '4', '5') NOT NULL,
+    date_created  TIMESTAMP                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+INSERT INTO resposta_criterio (id, criterio_id, level)
+VALUES (1, 1, '1'),
+       (2, 2, '3'),
+       (3, 3, '5');
+
+DROP TABLE IF EXISTS criterio;
+CREATE TABLE criterio
+(
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    vaga_id       INT                            NOT NULL,
+    name          VARCHAR(250)                   NOT NULL,
+    description   VARCHAR(250)                   NOT NULL,
+    pmd           ENUM ('1', '2', '3', '4', '5') NOT NULL,
+    weight        ENUM ('1', '2', '3', '4', '5') NOT NULL,
+    date_created  TIMESTAMP                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+INSERT INTO criterio (id, vaga_id, name, description, pmd, weight)
+VALUES (1, 1, 'MockCriteriaName01', 'MockDescription01', '1', '5'),
+       (2, 1, 'MockCriteriaName02', 'MockDescription02', '3', '3'),
+       (3, 1, 'MockCriteriaName03', 'MockDescription03', '4', '2');
 
 
 
