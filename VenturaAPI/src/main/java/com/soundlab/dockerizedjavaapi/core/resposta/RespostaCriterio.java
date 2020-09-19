@@ -1,8 +1,10 @@
 package com.soundlab.dockerizedjavaapi.core.resposta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.Level;
+import com.soundlab.dockerizedjavaapi.core.vaga.Criterio;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -26,6 +30,10 @@ public class RespostaCriterio extends AuditableEntity {
 
     @Column(name = "criterio_id")
     private Long criterioId;
+
+    @OneToOne
+    @JoinColumn(name = "criterio_id", insertable = false, updatable = false)
+    private Criterio criterio;
 
     @Column(name = "resposta_id")
     private Long respostaId;

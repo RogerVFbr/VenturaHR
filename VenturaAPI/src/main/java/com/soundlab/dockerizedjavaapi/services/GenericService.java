@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public abstract class UserService<T extends JpaRepository<Z, Long>, Z> {
+public abstract class GenericService<T extends JpaRepository<Z, Long>, Z> {
     T repository;
 
-    protected UserService(T repository) {
+    protected GenericService(T repository) {
         this.repository = repository;
     }
 

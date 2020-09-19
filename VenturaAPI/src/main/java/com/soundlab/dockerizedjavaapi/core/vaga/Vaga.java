@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.resposta.Resposta;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class Vaga extends AuditableEntity {
     private LocalDateTime dateModified;
 
     @JsonProperty("respostasCount")
-    public int getRespostasCount(){
+    public int getRespostasCount() {
         return respostas.size();
     }
 
@@ -65,4 +67,19 @@ public class Vaga extends AuditableEntity {
         return this.ownerId;
     }
 
+    @JsonProperty("perfil")
+    public Double getPerfil() {
+        double somaDosPesos = criterios.stream()
+            .mapToDouble(crit -> crit.getWeight().getLevelValue())
+            .sum();
+
+        double somaMultiplosPmdPeso = criterios.stream()
+            .mapToDouble(crit -> crit.getPmd().getLevelValue() * crit.getWeight().getLevelValue())
+            .sum();
+
+        double result = somaMultiplosPmdPeso / somaDosPesos;
+
+        BigDecimal bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
+        return bd.doubleValue();
+    }
 }

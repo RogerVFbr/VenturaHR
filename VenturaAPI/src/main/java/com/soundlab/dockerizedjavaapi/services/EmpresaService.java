@@ -6,7 +6,7 @@ import com.soundlab.dockerizedjavaapi.repositories.EmpresaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmpresaService extends UserService<EmpresaRepository, Empresa> {
+public class EmpresaService extends GenericService<EmpresaRepository, Empresa> {
 
     public EmpresaService(EmpresaRepository empresaRepository) {
         super(empresaRepository);
