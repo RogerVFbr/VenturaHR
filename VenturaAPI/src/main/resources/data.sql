@@ -1,57 +1,12 @@
-SET @TIME_NOW = DATEADD(MINUTE, -2, CURRENT_TIMESTAMP());
-
-DROP TABLE IF EXISTS scenes;
-CREATE TABLE scenes
-(
-    scene_id          INT AUTO_INCREMENT PRIMARY KEY,
-    title             VARCHAR(250)                                           NOT NULL,
-    scene_update_time TIMESTAMP                                              NOT NULL,
-    date_modified     TIMESTAMP                                              NOT NULL,
-    current_status    ENUM ('pendente', 'preparada', 'gravada', 'pendurada') NOT NULL
-);
-INSERT INTO scenes (scene_id, title, scene_update_time, date_modified, current_status)
-VALUES (1, 'Fatima encontra Otto', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (2, 'Festa no bar de Zica', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (3, 'Fernando e Leila', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (4, 'Barraca de cachorro quente', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (5, 'Aniversario no feriado', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (6, 'Briga Iris e Marcia', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (7, 'Encontro em Madureira', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (8, 'Familia Pereira se reencontra', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (9, 'Troca de postos', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (10, 'Democracia aos frangalhos', @TIME_NOW, @TIME_NOW, 'pendente');
-
-DROP TABLE IF EXISTS scenes_log;
-CREATE TABLE scenes_log
-(
-    log_id            INT AUTO_INCREMENT PRIMARY KEY,
-    scene_id          INT                                                    NOT NULL,
-    title             VARCHAR(250)                                           NOT NULL,
-    scene_update_time TIMESTAMP                                              NOT NULL,
-    date_modified     TIMESTAMP                                              NOT NULL,
-    current_status    ENUM ('pendente', 'preparada', 'gravada', 'pendurada') NOT NULL
-);
-INSERT INTO scenes_log (log_id, scene_id, title, scene_update_time, date_modified, current_status)
-VALUES (1, 1, 'Fátima encontra Otto', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (2, 2, 'Festa no bar de Zica', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (3, 3, 'Acidente em Cachoeiro', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (4, 4, 'Barraca de cachorro quente', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (5, 5, 'Aniversario no feriado', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (6, 6, 'Briga Iris e Marcia', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (7, 7, 'Encontro em Madureira', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (8, 8, 'Familia Pereira se reencontra', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (9, 9, 'Troca de postos', @TIME_NOW, @TIME_NOW, 'pendente'),
-       (10, 10, 'Democracia aos frangalhos', @TIME_NOW, @TIME_NOW, 'pendente');
-
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
-    name          VARCHAR(250)                                  NOT NULL,
-    document_id   VARCHAR(250)                                  NOT NULL,
+    name          VARCHAR(250)                                   NOT NULL,
+    document_id   VARCHAR(250)                                   NOT NULL,
     type          ENUM ('candidato', 'empresa', 'administrador') NOT NULL,
-    date_created  TIMESTAMP                                              DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified TIMESTAMP                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    date_created  TIMESTAMP                                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 INSERT INTO users (id, name, document_id, type)
 VALUES (1, 'Eliodoro Gonçalves Fonseca', '09889009', 'candidato'),
@@ -65,18 +20,18 @@ VALUES (1, 'Eliodoro Gonçalves Fonseca', '09889009', 'candidato'),
        (9, 'Hans Monen', '789679879', 'administrador'),
        (10, 'Leandro Medina', '456745675467', 'administrador');
 
-DROP TABLE IF EXISTS vagas;
+DROP TABLE IF EXISTS vagas CASCADE;
 CREATE TABLE vagas
 (
-    id               INT AUTO_INCREMENT PRIMARY KEY,
-    owner_id         INT                          NOT NULL,
-    shortDescription VARCHAR(250)                 NOT NULL,
-    longDescription  VARCHAR(250)                 NOT NULL,
-    status           ENUM ('aberto', 'encerrado') NOT NULL,
-    date_created     TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified    TIMESTAMP                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    id                INT AUTO_INCREMENT PRIMARY KEY,
+    owner_id          INT                          NOT NULL,
+    short_description VARCHAR(250)                 NOT NULL,
+    long_description  VARCHAR(250)                 NOT NULL,
+    status            ENUM ('aberto', 'encerrado') NOT NULL,
+    date_created      TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified     TIMESTAMP                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO vagas (id, owner_id, shortDescription, longDescription, status)
+INSERT INTO vagas (id, owner_id, short_description, long_description, status)
 VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'aberto'),
        (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'aberto'),
        (3, 6, 'Recepcionista', 'MockLongDescription', 'encerrado'),
@@ -87,8 +42,8 @@ VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'aberto'),
        (8, 8, 'Executivo financeiro', 'MockLongDescription', 'aberto'),
        (9, 9, 'Motorista', 'MockLongDescription', 'encerrado');
 
-DROP TABLE IF EXISTS resposta;
-CREATE TABLE resposta
+DROP TABLE IF EXISTS respostas CASCADE;
+CREATE TABLE respostas
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     vaga_id       INT          NOT NULL,
@@ -98,7 +53,7 @@ CREATE TABLE resposta
     date_created  TIMESTAMP             DEFAULT CURRENT_TIMESTAMP NOT NULL,
     date_modified TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO resposta (id, vaga_id, candidato_id, curriculo_url, text_content)
+INSERT INTO respostas (id, vaga_id, candidato_id, curriculo_url, text_content)
 VALUES (1, 1, 1, 'https://www.mockdomain.com/MockCurriculumUrl1', 'MockTextContent1'),
        (2, 2, 2, 'https://www.mockdomain.com/MockCurriculumUrl2', 'MockTextContent2'),
        (3, 3, 4, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent3'),
@@ -113,32 +68,33 @@ DROP TABLE IF EXISTS resposta_criterio;
 CREATE TABLE resposta_criterio
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
-    criterio_id   INT                            NOT NULL,
-    level         ENUM ('1', '2', '3', '4', '5') NOT NULL,
-    date_created  TIMESTAMP                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified TIMESTAMP                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    criterio_id   INT                                                          NOT NULL,
+    resposta_id   INT                                                          NOT NULL,
+    level         ENUM ('muito baixo', 'baixo', 'medio', 'alto', 'muito alto') NOT NULL,
+    date_created  TIMESTAMP                                                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP                                                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO resposta_criterio (id, criterio_id, level)
-VALUES (1, 1, '1'),
-       (2, 2, '3'),
-       (3, 3, '5');
+INSERT INTO resposta_criterio (id, criterio_id, resposta_id, level)
+VALUES (1, 1, 1, 'baixo'),
+       (2, 2, 1, 'medio'),
+       (3, 3, 1, 'alto');
 
 DROP TABLE IF EXISTS criterio;
 CREATE TABLE criterio
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
-    vaga_id       INT                            NOT NULL,
-    name          VARCHAR(250)                   NOT NULL,
-    description   VARCHAR(250)                   NOT NULL,
-    pmd           ENUM ('1', '2', '3', '4', '5') NOT NULL,
-    weight        ENUM ('1', '2', '3', '4', '5') NOT NULL,
-    date_created  TIMESTAMP                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified TIMESTAMP                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    vaga_id       INT                                                          NOT NULL,
+    name          VARCHAR(250)                                                 NOT NULL,
+    description   VARCHAR(250)                                                 NOT NULL,
+    pmd           ENUM ('muito baixo', 'baixo', 'medio', 'alto', 'muito alto') NOT NULL,
+    weight        ENUM ('muito baixo', 'baixo', 'medio', 'alto', 'muito alto') NOT NULL,
+    date_created  TIMESTAMP                                                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified TIMESTAMP                                                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 INSERT INTO criterio (id, vaga_id, name, description, pmd, weight)
-VALUES (1, 1, 'MockCriteriaName01', 'MockDescription01', '1', '5'),
-       (2, 1, 'MockCriteriaName02', 'MockDescription02', '3', '3'),
-       (3, 1, 'MockCriteriaName03', 'MockDescription03', '4', '2');
+VALUES (1, 1, 'MockCriteriaName01', 'MockDescription01', 'baixo', 'medio'),
+       (2, 1, 'MockCriteriaName02', 'MockDescription02', 'medio', 'muito alto'),
+       (3, 1, 'MockCriteriaName03', 'MockDescription03', 'muito baixo', 'muito baixo');
 
 
 
