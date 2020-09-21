@@ -1,6 +1,7 @@
 package com.soundlab.dockerizedjavaapi.services.view;
 
 import com.soundlab.dockerizedjavaapi.core.domain.user.User;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaStatus;
 import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseContent;
 import com.soundlab.dockerizedjavaapi.services.domain.UserService;
 import com.soundlab.dockerizedjavaapi.services.domain.VagaService;
@@ -25,6 +26,7 @@ public class SignInViewService {
             vagaService
                 .findAll()
                 .stream()
+                .filter(vaga -> vaga.getStatus().equals(VagaStatus.ABERTO))
                 .sorted((o1, o2) -> o2.getDateCreated().compareTo(o1.getDateCreated()))
                 .limit(10)
                 .collect(Collectors.toList())
