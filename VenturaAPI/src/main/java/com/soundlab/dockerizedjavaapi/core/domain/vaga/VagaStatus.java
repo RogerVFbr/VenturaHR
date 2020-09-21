@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.core.vaga;
+package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
 public enum VagaStatus {
     ABERTO(0, "aberto"),

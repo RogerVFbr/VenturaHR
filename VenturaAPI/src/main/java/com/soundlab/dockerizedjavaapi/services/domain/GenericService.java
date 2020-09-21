@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.services;
+package com.soundlab.dockerizedjavaapi.services.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

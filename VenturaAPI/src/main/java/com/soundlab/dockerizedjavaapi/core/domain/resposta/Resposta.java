@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.core.resposta;
+package com.soundlab.dockerizedjavaapi.core.domain.resposta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;

@@ -1,6 +1,6 @@
-package com.soundlab.dockerizedjavaapi.services;
+package com.soundlab.dockerizedjavaapi.services.domain;
 
-import com.soundlab.dockerizedjavaapi.core.user.Empresa;
+import com.soundlab.dockerizedjavaapi.core.domain.user.Empresa;
 import com.soundlab.dockerizedjavaapi.repositories.EmpresaRepository;
 
 import org.springframework.stereotype.Service;

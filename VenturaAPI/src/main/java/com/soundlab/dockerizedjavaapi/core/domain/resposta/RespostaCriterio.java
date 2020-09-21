@@ -1,10 +1,9 @@
-package com.soundlab.dockerizedjavaapi.core.resposta;
+package com.soundlab.dockerizedjavaapi.core.domain.resposta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.Level;
-import com.soundlab.dockerizedjavaapi.core.vaga.Criterio;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.Criterio;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.repositories;
 
-import com.soundlab.dockerizedjavaapi.core.vaga.Vaga;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.Vaga;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

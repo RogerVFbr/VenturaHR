@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.core.user;
+package com.soundlab.dockerizedjavaapi.core.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
@@ -21,7 +21,7 @@ import lombok.Data;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType=DiscriminatorType.STRING)
-public abstract class User extends AuditableEntity {
+public class User extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -33,11 +33,22 @@ public abstract class User extends AuditableEntity {
     @Column(name = "document_id")
     private String documentId;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "type", insertable = false, updatable = false)
     private UserType userType;
 
     @JsonIgnore
     public UserType getUserType() {
         return this.userType;
+    }
+
+    @JsonIgnore
+    public String getPassword() {
+        return this.password;
     }
 }

@@ -1,7 +1,7 @@
-package com.soundlab.dockerizedjavaapi.controllers;
+package com.soundlab.dockerizedjavaapi.controllers.domain;
 
-import com.soundlab.dockerizedjavaapi.core.user.Empresa;
-import com.soundlab.dockerizedjavaapi.services.EmpresaService;
+import com.soundlab.dockerizedjavaapi.core.domain.user.Empresa;
+import com.soundlab.dockerizedjavaapi.services.domain.EmpresaService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
-package com.soundlab.dockerizedjavaapi.core.user;
+package com.soundlab.dockerizedjavaapi.core.domain.user;
 
-import com.soundlab.dockerizedjavaapi.core.vaga.Vaga;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.Vaga;
 
 import java.util.List;
 

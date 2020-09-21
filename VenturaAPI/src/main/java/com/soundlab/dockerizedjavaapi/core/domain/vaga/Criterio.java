@@ -1,4 +1,4 @@
-package com.soundlab.dockerizedjavaapi.core.vaga;
+package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.Level;

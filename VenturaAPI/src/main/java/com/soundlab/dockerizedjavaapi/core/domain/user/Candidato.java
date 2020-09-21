@@ -1,6 +1,6 @@
-package com.soundlab.dockerizedjavaapi.core.user;
+package com.soundlab.dockerizedjavaapi.core.domain.user;
 
-import com.soundlab.dockerizedjavaapi.core.resposta.Resposta;
+import com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta;
 
 import java.util.List;
 

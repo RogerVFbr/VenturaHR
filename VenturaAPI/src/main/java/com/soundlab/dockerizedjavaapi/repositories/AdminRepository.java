@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.repositories;
 
-import com.soundlab.dockerizedjavaapi.core.user.Admin;
+import com.soundlab.dockerizedjavaapi.core.domain.user.Admin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

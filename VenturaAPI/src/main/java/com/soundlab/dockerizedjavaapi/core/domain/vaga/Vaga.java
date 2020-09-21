@@ -1,9 +1,9 @@
-package com.soundlab.dockerizedjavaapi.core.vaga;
+package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
-import com.soundlab.dockerizedjavaapi.core.resposta.Resposta;
+import com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -39,6 +39,9 @@ public class Vaga extends AuditableEntity {
 
     @Column(name = "long_description")
     private String longDescription;
+
+    @Column(name = "location")
+    private String location;
 
     @Column(name = "status")
     private VagaStatus status;

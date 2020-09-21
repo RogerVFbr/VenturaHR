@@ -1,7 +1,7 @@
-package com.soundlab.dockerizedjavaapi.controllers;
+package com.soundlab.dockerizedjavaapi.controllers.domain;
 
-import com.soundlab.dockerizedjavaapi.core.vaga.Vaga;
-import com.soundlab.dockerizedjavaapi.services.VagaService;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.Vaga;
+import com.soundlab.dockerizedjavaapi.services.domain.VagaService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
