@@ -33,8 +33,9 @@ public class SignInViewService {
         );
     }
 
-    public boolean requestSignIn(String email, String password) {
+    public User requestSignIn(String email, String password) {
         User user = userService.findByEmail(email);
-        return user != null && password.equals(user.getPassword());
+        if (user != null && password.equals(user.getPassword())) return user;
+        return null;
     }
 }
