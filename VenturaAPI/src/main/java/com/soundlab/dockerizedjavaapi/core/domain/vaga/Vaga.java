@@ -72,6 +72,9 @@ public class Vaga extends AuditableEntity {
 
     @JsonProperty("perfil")
     public Double getPerfil() {
+
+        if (criterios.isEmpty()) return 0D;
+
         double somaDosPesos = criterios.stream()
             .mapToDouble(crit -> crit.getWeight().getLevelValue())
             .sum();

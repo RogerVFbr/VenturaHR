@@ -42,7 +42,7 @@ cd docker
 Execute o *build* da imagem:
 
 ```
-docker build -t java-api .
+docker build -t venturahr-api .
 ```
 
 Confirme se a imagem está local:
@@ -54,7 +54,7 @@ docker images
 Execute o contêiner:
 
 ```
-docker run -d -p 8080:8080 --name javaapi java-api
+docker run -d -p 8080:8080 --name venturahr-api venturahr-api
 ```
 
 Confirme a execução do contêiner:
@@ -65,7 +65,10 @@ docker ps
 
 O endereço GET principal da api estará disponível no URL indicado abaixo. Use-o para testar:
 ```
-http://localhost:8080/api/scenes
+http://localhost:8080/api/users/admins
+http://localhost:8080/api/users/candidatos
+http://localhost:8080/api/users/empresas
+http://localhost:8080/api/vagas
 ```
 
 ## Teste dos endpoints utilizando CURL

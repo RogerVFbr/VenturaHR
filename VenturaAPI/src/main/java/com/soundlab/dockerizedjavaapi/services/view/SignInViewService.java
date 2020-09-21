@@ -1,7 +1,7 @@
 package com.soundlab.dockerizedjavaapi.services.view;
 
 import com.soundlab.dockerizedjavaapi.core.domain.user.User;
-import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewContent;
+import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseContent;
 import com.soundlab.dockerizedjavaapi.services.domain.UserService;
 import com.soundlab.dockerizedjavaapi.services.domain.VagaService;
 
@@ -20,8 +20,8 @@ public class SignInViewService {
         this.userService = userService;
     }
 
-    public SignInViewContent getContent() {
-        return new SignInViewContent(
+    public SignInViewResponseContent getContent() {
+        return new SignInViewResponseContent(
             vagaService
                 .findAll()
                 .stream()
@@ -33,8 +33,6 @@ public class SignInViewService {
 
     public boolean requestSignIn(String email, String password) {
         User user = userService.findByEmail(email);
-        if (user != null && password.equals(user.getPassword()))
-            return true;
-        return false;
+        return user != null && password.equals(user.getPassword());
     }
 }

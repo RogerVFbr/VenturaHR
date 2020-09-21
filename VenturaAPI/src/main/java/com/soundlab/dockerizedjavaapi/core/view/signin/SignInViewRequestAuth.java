@@ -3,7 +3,7 @@ package com.soundlab.dockerizedjavaapi.core.view.signin;
 import lombok.Data;
 
 @Data
-public class SignInAuthRequest {
+public class SignInViewRequestAuth {
     private String email;
     private String password;
 }

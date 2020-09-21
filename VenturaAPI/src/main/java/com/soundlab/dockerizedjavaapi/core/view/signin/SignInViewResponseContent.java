@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SignInViewContent {
+public class SignInViewResponseContent {
     private List<Vaga> vagas;
 }
 
