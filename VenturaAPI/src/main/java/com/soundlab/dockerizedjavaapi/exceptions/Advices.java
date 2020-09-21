@@ -10,8 +10,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class Advices {
     @ResponseBody
     @ExceptionHandler(InvalidCredentialsException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     String invalidCredentialsExceptionHandler(InvalidCredentialsException ex) {
+        return ex.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String userNotFoundExceptionHandler(UserNotFoundException ex) {
         return ex.getMessage();
     }
 }

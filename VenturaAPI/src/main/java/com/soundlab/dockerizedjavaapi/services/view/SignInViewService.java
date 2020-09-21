@@ -6,13 +6,14 @@ import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseContent
 import com.soundlab.dockerizedjavaapi.exceptions.InvalidCredentialsException;
 import com.soundlab.dockerizedjavaapi.services.domain.UserService;
 import com.soundlab.dockerizedjavaapi.services.domain.VagaService;
+import com.soundlab.dockerizedjavaapi.utils.StringResources;
 
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
 @Service
-public class SignInViewService {
+public class SignInViewService implements IViewService<SignInViewResponseContent> {
 
     private final VagaService vagaService;
     private final UserService userService;
@@ -24,6 +25,9 @@ public class SignInViewService {
 
     public SignInViewResponseContent getContent() {
         return new SignInViewResponseContent(
+            StringResources.COMPANY_LOGO_TEXT,
+            StringResources.PAGE_FOOTER_TEXT,
+            StringResources.MEMBER_BENEFITS,
             vagaService
                 .findAll()
                 .stream()
@@ -36,7 +40,7 @@ public class SignInViewService {
 
     public User requestSignIn(String email, String password) {
         User user = userService.findByEmail(email);
-        if (user != null || password.equals(user.getPassword()))
+        if (user == null || !password.equals(user.getPassword()))
             throw new InvalidCredentialsException();
         return user;
     }

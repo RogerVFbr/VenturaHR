@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VagaService extends GenericService<VagaRepository, Vaga> {
-
     public VagaService(VagaRepository vagaRepository) {
         super(vagaRepository);
     }

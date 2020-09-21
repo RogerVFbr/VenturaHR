@@ -10,6 +10,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class SignInViewResponseContent {
+    private String companyLogoText;
+    private String pageFooterContent;
+    private String memberBenefits;
     private List<Vaga> vagas;
 }
 

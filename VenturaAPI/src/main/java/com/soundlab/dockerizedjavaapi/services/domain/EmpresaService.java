@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmpresaService extends GenericService<EmpresaRepository, Empresa> {
-
     public EmpresaService(EmpresaRepository empresaRepository) {
         super(empresaRepository);
     }
