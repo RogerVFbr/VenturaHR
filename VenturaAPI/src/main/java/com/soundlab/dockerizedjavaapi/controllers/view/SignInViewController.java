@@ -21,14 +21,13 @@ public class SignInViewController {
     }
 
     @GetMapping("/sign-in/content")
-    public ResponseEntity<SignInViewResponseContent> SignInGetContent() {
+    public ResponseEntity<SignInViewResponseContent> getContent() {
         return ResponseEntity.ok(signInViewService.getContent());
     }
 
     @PostMapping("/sign-in/auth")
     public ResponseEntity<User> requestSignIn(@RequestBody SignInViewRequestAuth authRequest) {
         User user = signInViewService.requestSignIn(authRequest.getEmail(), authRequest.getPassword());
-        if (user != null) return ResponseEntity.ok(user);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(user);
     }
 }
