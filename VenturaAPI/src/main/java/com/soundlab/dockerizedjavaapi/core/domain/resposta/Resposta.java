@@ -41,9 +41,4 @@ public class Resposta extends AuditableEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "resposta_id")
     List<RespostaCriterio> respostasCriterios;
-
-    @JsonIgnore
-    public Long getVagaId() {
-        return this.vagaId;
-    }
 }

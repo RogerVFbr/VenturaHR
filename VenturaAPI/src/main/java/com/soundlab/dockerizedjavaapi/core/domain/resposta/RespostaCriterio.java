@@ -45,9 +45,4 @@ public class RespostaCriterio extends AuditableEntity {
 
     @Column(name = "date_modified")
     private LocalDateTime dateModified;
-
-    @JsonIgnore
-    public Long getRespostaId() {
-        return this.respostaId;
-    }
 }

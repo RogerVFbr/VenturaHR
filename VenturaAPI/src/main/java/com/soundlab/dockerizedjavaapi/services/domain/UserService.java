@@ -1,7 +1,6 @@
 package com.soundlab.dockerizedjavaapi.services.domain;
 
 import com.soundlab.dockerizedjavaapi.core.domain.user.User;
-import com.soundlab.dockerizedjavaapi.exceptions.UserNotFoundException;
 import com.soundlab.dockerizedjavaapi.repositories.UserRepository;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ public class UserService extends GenericService<UserRepository, User> {
         super(userRepository);
     }
 
-    public User findByEmail(String email) {
-        return repository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+    public <T> T findByEmail(String email, Class<T> type) {
+        return repository.findByEmail(email, type);
     }
 }

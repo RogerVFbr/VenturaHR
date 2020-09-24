@@ -1,3 +1,6 @@
+SET @TIME_IN_15_DAYS = DATEADD(DAY, +15, CURRENT_TIMESTAMP());
+SET @TIME_YESTERDAY = DATEADD(DAY, -1, CURRENT_TIMESTAMP());
+
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users
 (
@@ -27,24 +30,24 @@ DROP TABLE IF EXISTS vagas CASCADE;
 CREATE TABLE vagas
 (
     id                INT AUTO_INCREMENT PRIMARY KEY,
-    owner_id          INT                          NOT NULL,
-    short_description VARCHAR(250)                 NOT NULL,
-    long_description  VARCHAR(250)                 NOT NULL,
-    location          VARCHAR(250)                 NOT NULL,
-    status            ENUM ('aberto', 'encerrado') NOT NULL,
-    date_created      TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified     TIMESTAMP                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    owner_id          INT          NOT NULL,
+    short_description VARCHAR(250) NOT NULL,
+    long_description  VARCHAR(250) NOT NULL,
+    location          VARCHAR(250) NOT NULL,
+    date_expiration   TIMESTAMP    NOT NULL,
+    date_created      TIMESTAMP             DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO vagas (id, owner_id, short_description, long_description, location, status)
-VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro', 'aberto'),
-       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro',  'aberto'),
-       (3, 6, 'Recepcionista', 'MockLongDescription', 'Vitória',  'encerrado'),
-       (4, 7, 'Telemarketing', 'MockLongDescription', 'São Paulo',  'aberto'),
-       (5, 7, 'Desenvolvedor Front-End', 'MockLongDescription', 'São Paulo', 'encerrado'),
-       (6, 7, 'Analista DevOps', 'MockLongDescription', 'Belo Horizonte',  'aberto'),
-       (7, 8, 'Atendimento ao cliente', 'MockLongDescription', 'Recife', 'aberto'),
-       (8, 8, 'Executivo financeiro', 'MockLongDescription', 'Fortaleza', 'aberto'),
-       (9, 9, 'Motorista', 'MockLongDescription', 'Belo Horizonte', 'encerrado');
+INSERT INTO vagas (id, owner_id, short_description, long_description, location, date_expiration)
+VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro', @TIME_IN_15_DAYS),
+       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro', @TIME_IN_15_DAYS),
+       (3, 6, 'Recepcionista', 'MockLongDescription', 'Vitória', @TIME_YESTERDAY),
+       (4, 7, 'Telemarketing', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),
+       (5, 7, 'Desenvolvedor Front-End', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),
+       (6, 7, 'Analista DevOps', 'MockLongDescription', 'Belo Horizonte', @TIME_YESTERDAY),
+       (7, 8, 'Atendimento ao cliente', 'MockLongDescription', 'Recife', @TIME_IN_15_DAYS),
+       (8, 8, 'Executivo financeiro', 'MockLongDescription', 'Fortaleza', @TIME_YESTERDAY),
+       (9, 9, 'Motorista', 'MockLongDescription', 'Belo Horizonte', @TIME_IN_15_DAYS);
 
 DROP TABLE IF EXISTS respostas CASCADE;
 CREATE TABLE respostas

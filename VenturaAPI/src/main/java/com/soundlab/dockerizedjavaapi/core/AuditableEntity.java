@@ -19,14 +19,4 @@ public abstract class AuditableEntity {
     @Column(name = "date_modified", insertable = false, updatable = true)
     @UpdateTimestamp
     protected LocalDateTime dateModified;
-
-    @JsonIgnore
-    public LocalDateTime getDateCreated() {
-        return this.dateCreated;
-    }
-
-    @JsonIgnore
-    public LocalDateTime getDateModified() {
-        return this.dateModified;
-    }
 }

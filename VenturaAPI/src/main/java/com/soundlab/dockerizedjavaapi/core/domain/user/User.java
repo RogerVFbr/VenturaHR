@@ -41,14 +41,4 @@ public class User extends AuditableEntity {
 
     @Column(name = "type", insertable = false, updatable = false)
     private UserType userType;
-
-    @JsonIgnore
-    public UserType getUserType() {
-        return this.userType;
-    }
-
-    @JsonIgnore
-    public String getPassword() {
-        return this.password;
-    }
 }

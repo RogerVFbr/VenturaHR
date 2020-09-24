@@ -29,7 +29,7 @@ public class Vaga extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    protected Long id;
 
     @Column(name = "owner_id")
     private Long ownerId;
@@ -43,8 +43,8 @@ public class Vaga extends AuditableEntity {
     @Column(name = "location")
     private String location;
 
-    @Column(name = "status")
-    private VagaStatus status;
+    @Column(name = "date_expiration")
+    private LocalDateTime expirationDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "vaga_id")
@@ -54,20 +54,9 @@ public class Vaga extends AuditableEntity {
     @JoinColumn(name = "vaga_id")
     private List<Criterio> criterios;
 
-    @Column(name = "date_created")
-    private LocalDateTime dateCreated;
-
-    @Column(name = "date_modified")
-    private LocalDateTime dateModified;
-
     @JsonProperty("respostasCount")
     public int getRespostasCount() {
         return respostas.size();
-    }
-
-    @JsonIgnore
-    public Long getOwnerId() {
-        return this.ownerId;
     }
 
     @JsonProperty("perfil")
