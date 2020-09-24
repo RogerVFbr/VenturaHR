@@ -6,26 +6,29 @@ import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseVaga;
 import com.soundlab.dockerizedjavaapi.exceptions.InvalidCredentialsException;
 import com.soundlab.dockerizedjavaapi.services.domain.UserService;
 import com.soundlab.dockerizedjavaapi.services.domain.VagaService;
-import com.soundlab.dockerizedjavaapi.utils.StringResources;
+import com.soundlab.dockerizedjavaapi.services.StringResourcesService;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class SignInViewService implements IViewService<SignInViewResponseContent> {
+public class SignInViewService extends ViewService<SignInViewResponseContent> {
 
     private final VagaService vagaService;
     private final UserService userService;
 
-    public SignInViewService(VagaService vagaService, UserService userService) {
+    public SignInViewService(VagaService vagaService,
+                             UserService userService,
+                             StringResourcesService stringResourcesService) {
+        super(stringResourcesService);
         this.vagaService = vagaService;
         this.userService = userService;
     }
 
     public SignInViewResponseContent getContent() {
         return new SignInViewResponseContent(
-            StringResources.COMPANY_LOGO_TEXT,
-            StringResources.PAGE_FOOTER_TEXT,
-            StringResources.MEMBER_BENEFITS,
+            stringResourcesService.getCompanyLogoText(),
+            stringResourcesService.getPageFooterText(),
+            stringResourcesService.getMemberBenefits(),
             vagaService.listLatestAvailable(SignInViewResponseVaga.class)
         );
     }
