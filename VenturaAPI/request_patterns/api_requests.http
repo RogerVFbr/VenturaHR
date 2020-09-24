@@ -1,0 +1,32 @@
+// SIGN IN VIEW - GET CONTENT
+GET {{BASE_URL}}sign-in/content
+Content-Type: application/json
+
+> {%
+    client.test("Sign In View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// SIGN IN VIEW - REQUEST SIGN IN
+POST {{BASE_URL}}sign-in/auth
+Content-Type: application/json
+
+{
+  "email": "eliodoro@fonseca.com",
+  "password": "123456"
+}
+
+> {%
+    client.test("Sign In View - REQUEST SIGN IN", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+
+
+
