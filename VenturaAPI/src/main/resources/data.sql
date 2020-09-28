@@ -6,24 +6,38 @@ CREATE TABLE users
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     name          VARCHAR(250)                                   NOT NULL,
+    address       VARCHAR(250)                                   NOT NULL,
+    phone_number  VARCHAR(250)                                   NOT NULL,
     document_id   VARCHAR(250)                                   NOT NULL,
+    razao_social  VARCHAR(250)                                   NULL,
     email         VARCHAR(250)                                   NOT NULL,
     password      VARCHAR(250)                                   NOT NULL,
     type          ENUM ('candidato', 'empresa', 'administrador') NOT NULL,
     date_created  TIMESTAMP                                               DEFAULT CURRENT_TIMESTAMP NOT NULL,
     date_modified TIMESTAMP                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO users (id, name, document_id, email, password, type)
-VALUES (1, 'Eliodoro Gonçalves Fonseca', '09889009', 'eliodoro@fonseca.com', '123456', 'candidato'),
-       (2, 'Francisa Alves', '3654464', 'franciscas@alves.com', '123456', 'candidato'),
-       (3, 'Rômulo da Silva', '786989769', 'romulo@silva.com', '123456', 'candidato'),
-       (4, 'Carolina Braga', '123421234', 'carolina@braga.com', '123456', 'candidato'),
-       (5, 'Paulo Barbosa', '8970808', 'paulo@barbosa.com', '123456', 'candidato'),
-       (6, 'Santana Óleo e Gás', '3425555', 'rh@santanaoleoeas.com', '123456', 'empresa'),
-       (7, 'SmartTrends', '56867865878', 'rh@smarttrends.com', '123456', 'empresa'),
-       (8, 'B2Y Retail', '45635643564', 'rh@2yretail.com', '123456', 'empresa'),
-       (9, 'Hans Monen', '789679879', 'hans.monen@venturarh.com', '123456', 'administrador'),
-       (10, 'Leandro Medina', '456745675467', 'leandro.medina@venturarh.com', '123456',
+INSERT INTO users (id, name, address, phone_number, document_id, razao_social, email, password,
+                   type)
+VALUES (1, 'Eliodoro Gonçalves Fonseca', 'Rua do Carmo, 305/256 - Botafogo - Rio de Janeiro',
+        '11911111111', '09889009', '', 'eliodoro@fonseca.com', '123456', 'candidato'),
+       (2, 'Francisa Alves', 'Av. Belarmindo Gomes, 400 sala B - Caxias', '11911111111', '3654464',
+        '', 'franciscas@alves.com', '123456', 'candidato'),
+       (3, 'Rômulo da Silva', 'Travessa Roque Santos, 286 casa 1 - São Pedro da Aldeia',
+        '11911111111', '786989769', '', 'romulo@silva.com', '123456', 'candidato'),
+       (4, 'Carolina Braga', 'Rua Raquel Matos, 444/304 - Centro - Rio de Janeiro', '11911111111',
+        '123421234', '', 'carolina@braga.com', '123456', 'candidato'),
+       (5, 'Paulo Barbosa', 'Alameda Santos, 288 casa 10 - Pinheiros - São Paulo', '11911111111',
+        '8970808', '', 'paulo@barbosa.com', '123456', 'candidato'),
+       (6, 'Santana Óleo e Gás', 'Av. Passos , 2222 - Centro - Rio de Janeiro', '11911111111',
+        '3425555', 'Santana LTDA', 'rh@santanaoleoeas.com', '123456', 'empresa'),
+       (7, 'SmartTrends', 'Av. Galega Silva, 88 - Leblon - Rio de Janeiro', '11911111111',
+        '56867865878', 'SmartTrends LTDA', 'rh@smarttrends.com', '123456', 'empresa'),
+       (8, 'B2Y Retail', 'Alameda Garrido, 77 - Belo Horizonte', '11911111111', '45635643564',
+        'B2Y Retail LTDA', 'rh@2yretail.com', '123456', 'empresa'),
+       (9, 'Hans Monen', 'Avenida Atlantica, 22/301 - Copacabana - Rio de Janeiro', '11911111111',
+        '789679879', '', 'hans.monen@venturarh.com', '123456', 'administrador'),
+       (10, 'Leandro Medina', 'Rua Andrade Rocha, 678/301 - Jardins - São Paulo', '11911111111',
+        '456745675467', '', 'leandro.medina@venturarh.com', '123456',
         'administrador');
 
 DROP TABLE IF EXISTS vagas CASCADE;
@@ -39,8 +53,10 @@ CREATE TABLE vagas
     date_modified     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 INSERT INTO vagas (id, owner_id, short_description, long_description, location, date_expiration)
-VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro', @TIME_IN_15_DAYS),
-       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro', @TIME_IN_15_DAYS),
+VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro',
+        @TIME_IN_15_DAYS),
+       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro',
+        @TIME_IN_15_DAYS),
        (3, 6, 'Recepcionista', 'MockLongDescription', 'Vitória', @TIME_YESTERDAY),
        (4, 7, 'Telemarketing', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),
        (5, 7, 'Desenvolvedor Front-End', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),

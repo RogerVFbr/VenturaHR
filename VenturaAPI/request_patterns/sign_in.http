@@ -1,4 +1,4 @@
-// SIGN IN VIEW - GET CONTENT
+// GET CONTENT
 GET {{BASE_URL}}sign-in/content
 Content-Type: application/json
 
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-// SIGN IN VIEW - REQUEST SIGN IN
+// REQUEST SIGN IN
 POST {{BASE_URL}}sign-in/auth
 Content-Type: application/json
 

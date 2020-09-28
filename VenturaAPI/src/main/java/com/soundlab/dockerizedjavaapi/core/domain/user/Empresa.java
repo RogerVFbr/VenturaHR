@@ -5,6 +5,7 @@ import com.soundlab.dockerizedjavaapi.core.domain.vaga.Vaga;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,9 @@ import lombok.Data;
 @Table(name = "users")
 @DiscriminatorValue(value="empresa")
 public class Empresa extends User {
+
+    @Column(name = "razao_social")
+    private String razaoSocial;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "owner_id")

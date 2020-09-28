@@ -1,0 +1,60 @@
+// GET CONTENT
+GET {{BASE_URL}}sign-up/content
+Content-Type: application/json
+
+> {%
+    client.test("Sign Up View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// REQUEST SIGN UP (CANDIDATO)
+POST {{BASE_URL}}sign-up/register
+Content-Type: application/json
+
+{
+  "name": "MockUser01",
+  "address": "MockAddress01",
+  "phoneNumber": "21212121212",
+  "email": "mock01@candidato.com",
+  "password": "123456",
+  "userType": "CANDIDATO",
+  "documentId": "MockDocumentId01"
+}
+
+> {%
+    client.test("Sign In View - REQUEST SIGN IN", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// REQUEST SIGN UP (EMPRESA)
+POST {{BASE_URL}}sign-up/register
+Content-Type: application/json
+
+{
+  "name": "MockUser02",
+  "address": "MockAddress02",
+  "phoneNumber": "21212121212",
+  "email": "mock02@empresa.com",
+  "password": "123456",
+  "userType": "EMPRESA",
+  "documentId": "MockDocumentId02",
+  "razaoSocial": "MockRazaoSocial01"
+}
+
+> {%
+    client.test("Sign In View - REQUEST SIGN IN", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+
+
+

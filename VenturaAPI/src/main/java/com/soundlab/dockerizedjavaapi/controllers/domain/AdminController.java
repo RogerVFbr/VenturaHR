@@ -21,7 +21,6 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-
     @GetMapping("/users/admins")
     List<Admin> findAll() {
         return adminService.findAll();

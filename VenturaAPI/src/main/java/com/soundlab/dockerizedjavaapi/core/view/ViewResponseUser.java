@@ -1,6 +1,6 @@
-package com.soundlab.dockerizedjavaapi.core.view.signin;
+package com.soundlab.dockerizedjavaapi.core.view;
 
-public interface SignInViewResponseUser {
+public interface ViewResponseUser {
     Long getId();
     String getName();
     String getDocumentId();

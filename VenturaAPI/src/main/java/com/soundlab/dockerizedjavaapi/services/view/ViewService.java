@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.services.view;
 
-import com.soundlab.dockerizedjavaapi.services.StringResourcesService;
+import com.soundlab.dockerizedjavaapi.services.utils.StringResourcesService;
 
 public abstract class ViewService<T> {
 

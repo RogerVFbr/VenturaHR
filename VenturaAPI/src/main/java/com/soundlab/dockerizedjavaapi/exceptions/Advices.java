@@ -21,4 +21,11 @@ public class Advices {
     String userNotFoundExceptionHandler(UserNotFoundException ex) {
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(InvalidRegistrationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    String invalidRegistrationExceptionHandler(InvalidRegistrationException ex) {
+        return ex.getMessage();
+    }
 }

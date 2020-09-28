@@ -1,6 +1,5 @@
 package com.soundlab.dockerizedjavaapi.core.domain.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 
 import javax.persistence.Column;
@@ -29,6 +28,12 @@ public class User extends AuditableEntity {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @Column(name = "document_id")
     private String documentId;

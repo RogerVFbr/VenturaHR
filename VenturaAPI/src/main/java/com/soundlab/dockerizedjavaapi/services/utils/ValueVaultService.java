@@ -1,34 +1,24 @@
-package com.soundlab.dockerizedjavaapi.services;
+package com.soundlab.dockerizedjavaapi.services.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service
-public class StringResourcesService {
-    private static final Logger LOG = LogManager.getLogger(StringResourcesService.class);
-    private static final String DEFAULT_VALUE = "N.A.";
-    private static final int DEFAULT_RENEW_TIME_IN_SECONDS = 30;
-    private static final Map<String, String> RESOURCES = new ConcurrentHashMap<>();
-    private static Thread WORKER;
+public abstract class ValueVaultService {
+    protected static final Logger LOG = LogManager.getLogger(StringResourcesService.class);
+    protected static final String DEFAULT_VALUE = "N.A.";
+    protected static final int RENEW_TIME_IN_SECONDS = 30;
+    protected static final Map<String, String> RESOURCES = new ConcurrentHashMap<>();
+    protected static Thread WORKER;
 
-    public StringResourcesService() {
+    protected ValueVaultService() {
         updateResources();
     }
 
-    public String getCompanyLogoText() {
-        return RESOURCES.getOrDefault("COMPANY_LOGO_TEXT", DEFAULT_VALUE);
-    }
-
-    public String getPageFooterText() {
-        return RESOURCES.getOrDefault("PAGE_FOOTER_TEXT", DEFAULT_VALUE);
-    }
-
-    public String getMemberBenefits() {
-        return RESOURCES.getOrDefault("MEMBER_BENEFITS", DEFAULT_VALUE);
+    protected String getResource(String key) {
+        return RESOURCES.getOrDefault(key, DEFAULT_VALUE);
     }
 
     private void updateResources() {
@@ -37,7 +27,7 @@ public class StringResourcesService {
                 while (true) {
                     fetchData();
                     try {
-                        Thread.sleep(DEFAULT_RENEW_TIME_IN_SECONDS*1000);
+                        Thread.sleep(RENEW_TIME_IN_SECONDS *1000);
                     } catch (InterruptedException e) {
                         LOG.error(e);
                     }
@@ -59,6 +49,7 @@ public class StringResourcesService {
             "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " +
             "consequuntur magni dolores eos velit esse quam nihil molestiae consequatur, " +
             "vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
+        RESOURCES.put("SIGN_UP_FORM_TITLE", "Criação de Conta - Cadastramento de usuário");
 
         LOG.info("StringResources updated. Resources fetched: {}", RESOURCES.size());
     }
