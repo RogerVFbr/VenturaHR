@@ -11,18 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "criterio")
-public class Criterio extends AuditableEntity {
+@Table(name = "vaga_criterios")
+public class VagaCriterio extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "vaga_id")
-    private Long vaga_id;
 
     @Column(name = "name")
     private String name;
@@ -35,4 +34,7 @@ public class Criterio extends AuditableEntity {
 
     @Column(name = "weight")
     private Level weight;
+
+    @Column(name = "position")
+    private int position;
 }

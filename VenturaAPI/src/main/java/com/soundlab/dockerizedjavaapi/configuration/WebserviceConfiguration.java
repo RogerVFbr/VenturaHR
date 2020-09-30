@@ -1,8 +1,5 @@
 package com.soundlab.dockerizedjavaapi.configuration;
 
-import com.soundlab.dockerizedjavaapi.mappers.CandidatoFromSignUpRequestUserMapper;
-import com.soundlab.dockerizedjavaapi.mappers.EmpresaFromSignUpRequestUserMapper;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +12,7 @@ class WebserviceConfiguration implements WebMvcConfigurer {
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
-
-        modelMapper.addMappings(new EmpresaFromSignUpRequestUserMapper());
-        modelMapper.addMappings(new CandidatoFromSignUpRequestUserMapper());
-
+//        modelMapper.addMappings(new EmpresaFromSignUpRequestUserMapper());
         return modelMapper;
     }
 }

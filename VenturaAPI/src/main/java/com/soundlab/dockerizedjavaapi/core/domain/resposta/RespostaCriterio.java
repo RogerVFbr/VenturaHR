@@ -1,9 +1,8 @@
 package com.soundlab.dockerizedjavaapi.core.domain.resposta;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.Level;
-import com.soundlab.dockerizedjavaapi.core.domain.vaga.Criterio;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaCriterio;
 
 import java.time.LocalDateTime;
 
@@ -27,15 +26,9 @@ public class RespostaCriterio extends AuditableEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "criterio_id")
-    private Long criterioId;
-
     @OneToOne
     @JoinColumn(name = "criterio_id", insertable = false, updatable = false)
-    private Criterio criterio;
-
-    @Column(name = "resposta_id")
-    private Long respostaId;
+    private VagaCriterio vagaCriterio;
 
     @Column(name = "level")
     private Level level;

@@ -1,6 +1,6 @@
 package com.soundlab.dockerizedjavaapi.controllers.domain;
 
-import com.soundlab.dockerizedjavaapi.core.domain.vaga.Criterio;
+import com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaCriterio;
 import com.soundlab.dockerizedjavaapi.services.domain.CriterioService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,23 +22,23 @@ public class CriterioController {
     }
 
     @GetMapping("/criterios")
-    List<Criterio> findAll() {
+    List<VagaCriterio> findAll() {
         return criterioService.findAll();
     }
 
     @GetMapping("/criterios/{id}")
-    Criterio getById(@PathVariable long id) {
+    VagaCriterio getById(@PathVariable long id) {
         return criterioService.findById(id);
     }
 
     @PostMapping("/criterios")
-    Criterio save(@RequestBody Criterio criterio) {
-        return criterioService.save(criterio);
+    VagaCriterio save(@RequestBody VagaCriterio vagaCriterio) {
+        return criterioService.save(vagaCriterio);
     }
 
     @PutMapping("/criterios/{id}")
-    Criterio update(@RequestBody Criterio criterio, @PathVariable long id) {
-        return criterioService.update(criterio);
+    VagaCriterio update(@RequestBody VagaCriterio vagaCriterio, @PathVariable long id) {
+        return criterioService.update(vagaCriterio);
     }
 
     @DeleteMapping("/criterios/{id}")

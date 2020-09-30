@@ -1,0 +1,62 @@
+// GET CONTENT
+GET {{BASE_URL}}home/candidato/content/1
+Content-Type: application/json
+
+> {%
+    client.test("Home Candidato View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// SEARCH ALL
+GET {{BASE_URL}}home/candidato/content/search/1
+Content-Type: application/json
+
+{
+  "content": "atendimento ao cliente",
+  "type": "ALL"
+}
+
+> {%
+    client.test("Home Candidato View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// SEARCH ANY
+GET {{BASE_URL}}home/candidato/content/search/1
+Content-Type: application/json
+
+{
+  "content": "atendimento desenvolvedor",
+  "type": "ANY"
+}
+
+> {%
+    client.test("Home Candidato View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// SEARCH NONE
+GET {{BASE_URL}}home/candidato/content/search/1
+Content-Type: application/json
+
+{
+  "content": "atendimento desenvolvedor",
+  "type": "NONE"
+}
+
+> {%
+    client.test("Home Candidato View - GET CONTENT", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###

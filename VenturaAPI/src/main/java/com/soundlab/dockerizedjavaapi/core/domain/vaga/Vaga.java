@@ -1,6 +1,5 @@
 package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta;
@@ -13,23 +12,27 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
 @Table(name = "vagas")
+@EqualsAndHashCode(callSuper = false)
 public class Vaga extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    protected Long id;
+    private Long id;
 
     @Column(name = "owner_id")
     private Long ownerId;
@@ -40,35 +43,48 @@ public class Vaga extends AuditableEntity {
     @Column(name = "long_description")
     private String longDescription;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "type")
+    private VagaType type;
+
+    @Column(name = "time_span")
+    private String timeSpan;
 
     @Column(name = "date_expiration")
     private LocalDateTime expirationDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "vaga_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vaga_id", insertable = false, updatable = false)
+    @OrderBy("dateCreated DESC")
     private List<Resposta> respostas;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "vaga_id")
-    private List<Criterio> criterios;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "vaga_id", nullable = false)
+    @OrderBy("position")
+    private List<VagaCriterio> vagaCriterios;
 
     @JsonProperty("respostasCount")
     public int getRespostasCount() {
-        return respostas.size();
+        if (respostas != null)
+            return respostas.size();
+        return 0;
     }
 
     @JsonProperty("perfil")
     public Double getPerfil() {
 
-        if (criterios.isEmpty()) return 0D;
+        if (vagaCriterios.isEmpty()) return 0D;
 
-        double somaDosPesos = criterios.stream()
+        double somaDosPesos = vagaCriterios.stream()
             .mapToDouble(crit -> crit.getWeight().getLevelValue())
             .sum();
 
-        double somaMultiplosPmdPeso = criterios.stream()
+        double somaMultiplosPmdPeso = vagaCriterios.stream()
             .mapToDouble(crit -> crit.getPmd().getLevelValue() * crit.getWeight().getLevelValue())
             .sum();
 

@@ -44,26 +44,39 @@ DROP TABLE IF EXISTS vagas CASCADE;
 CREATE TABLE vagas
 (
     id                INT AUTO_INCREMENT PRIMARY KEY,
-    owner_id          INT          NOT NULL,
-    short_description VARCHAR(250) NOT NULL,
-    long_description  VARCHAR(250) NOT NULL,
-    location          VARCHAR(250) NOT NULL,
-    date_expiration   TIMESTAMP    NOT NULL,
-    date_created      TIMESTAMP             DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_modified     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    owner_id          INT                NOT NULL,
+    short_description VARCHAR(250)       NOT NULL,
+    long_description  VARCHAR(250)       NOT NULL,
+    city              VARCHAR(250)       NOT NULL,
+    state             VARCHAR(250)       NOT NULL,
+    type              ENUM ('CLT', 'PJ') NOT NULL,
+    time_span         VARCHAR(250)       NOT NULL,
+    date_expiration   TIMESTAMP          NOT NULL,
+    date_created      TIMESTAMP                   DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_modified     TIMESTAMP          NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO vagas (id, owner_id, short_description, long_description, location, date_expiration)
-VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro',
+INSERT INTO vagas (id, owner_id, short_description, long_description, city, state, type, time_span,
+                   date_expiration)
+VALUES (1, 6, 'Gerente de Projetos Sênior', 'MockLongDescription', 'Rio de Janeiro', 'RJ', 'CLT',
+        '6 meses',
         @TIME_IN_15_DAYS),
-       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro',
+       (2, 6, 'Engenheiro de Óleo e Gás', 'MockLongDescription', 'Rio de Janeiro', 'RJ', 'PJ',
+        'Permanente',
         @TIME_IN_15_DAYS),
-       (3, 6, 'Recepcionista', 'MockLongDescription', 'Vitória', @TIME_YESTERDAY),
-       (4, 7, 'Telemarketing', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),
-       (5, 7, 'Desenvolvedor Front-End', 'MockLongDescription', 'São Paulo', @TIME_IN_15_DAYS),
-       (6, 7, 'Analista DevOps', 'MockLongDescription', 'Belo Horizonte', @TIME_YESTERDAY),
-       (7, 8, 'Atendimento ao cliente', 'MockLongDescription', 'Recife', @TIME_IN_15_DAYS),
-       (8, 8, 'Executivo financeiro', 'MockLongDescription', 'Fortaleza', @TIME_YESTERDAY),
-       (9, 9, 'Motorista', 'MockLongDescription', 'Belo Horizonte', @TIME_IN_15_DAYS);
+       (3, 6, 'Recepcionista', 'MockLongDescription', 'Vitória', 'ES', 'CLT', '1 ano',
+        @TIME_YESTERDAY),
+       (4, 7, 'Telemarketing', 'MockLongDescription', 'São Paulo', 'SP', 'PJ', '2 meses',
+        @TIME_IN_15_DAYS),
+       (5, 7, 'Desenvolvedor Front-End', 'MockLongDescription', 'São Paulo', 'SP', 'CLT',
+        'Permanente', @TIME_IN_15_DAYS),
+       (6, 7, 'Analista DevOps', 'MockLongDescription', 'Belo Horizonte', 'MG', 'PJ', 'Permanente',
+        @TIME_YESTERDAY),
+       (7, 8, 'Atendimento ao cliente', 'MockLongDescription', 'Recife', 'PE', 'CLT', '6 meses',
+        @TIME_IN_15_DAYS),
+       (8, 8, 'Executivo financeiro', 'MockLongDescription', 'Fortaleza', 'CE', 'PJ', '6 meses',
+        @TIME_YESTERDAY),
+       (9, 9, 'Motorista', 'MockLongDescription', 'Belo Horizonte', 'MG', 'CLT', 'Permanente',
+        @TIME_IN_15_DAYS);
 
 DROP TABLE IF EXISTS respostas CASCADE;
 CREATE TABLE respostas
@@ -79,12 +92,12 @@ CREATE TABLE respostas
 INSERT INTO respostas (id, vaga_id, candidato_id, curriculo_url, text_content)
 VALUES (1, 1, 1, 'https://www.mockdomain.com/MockCurriculumUrl1', 'MockTextContent1'),
        (2, 2, 2, 'https://www.mockdomain.com/MockCurriculumUrl2', 'MockTextContent2'),
-       (3, 3, 4, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent3'),
+       (3, 3, 1, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent3'),
        (4, 4, 4, 'https://www.mockdomain.com/MockCurriculumUrl4', 'MockTextContent4'),
        (5, 5, 5, 'https://www.mockdomain.com/MockCurriculumUrl5', 'MockTextContent5'),
        (6, 6, 1, 'https://www.mockdomain.com/MockCurriculumUrl1', 'MockTextContent6'),
        (7, 7, 2, 'https://www.mockdomain.com/MockCurriculumUrl2', 'MockTextContent7'),
-       (8, 8, 3, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent8'),
+       (8, 8, 1, 'https://www.mockdomain.com/MockCurriculumUrl3', 'MockTextContent8'),
        (9, 9, 4, 'https://www.mockdomain.com/MockCurriculumUrl4', 'MockTextContent9');
 
 DROP TABLE IF EXISTS resposta_criterio;
@@ -102,8 +115,8 @@ VALUES (1, 1, 1, 'baixo'),
        (2, 2, 1, 'medio'),
        (3, 3, 1, 'alto');
 
-DROP TABLE IF EXISTS criterio;
-CREATE TABLE criterio
+DROP TABLE IF EXISTS vaga_criterios;
+CREATE TABLE vaga_criterios
 (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     vaga_id       INT                                                          NOT NULL,
@@ -111,13 +124,14 @@ CREATE TABLE criterio
     description   VARCHAR(250)                                                 NOT NULL,
     pmd           ENUM ('muito baixo', 'baixo', 'medio', 'alto', 'muito alto') NOT NULL,
     weight        ENUM ('muito baixo', 'baixo', 'medio', 'alto', 'muito alto') NOT NULL,
+    position      INT                                                          NOT NULL,
     date_created  TIMESTAMP                                                             DEFAULT CURRENT_TIMESTAMP NOT NULL,
     date_modified TIMESTAMP                                                    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO criterio (id, vaga_id, name, description, pmd, weight)
-VALUES (1, 1, 'MockCriteriaName01', 'MockDescription01', 'baixo', 'medio'),
-       (2, 1, 'MockCriteriaName02', 'MockDescription02', 'medio', 'muito alto'),
-       (3, 1, 'MockCriteriaName03', 'MockDescription03', 'muito baixo', 'muito baixo');
+INSERT INTO vaga_criterios (id, vaga_id, name, description, pmd, weight, position)
+VALUES (1, 1, 'MockCriteriaName01', 'MockDescription01', 'baixo', 'medio', 0),
+       (2, 1, 'MockCriteriaName02', 'MockDescription02', 'medio', 'muito alto', 1),
+       (3, 1, 'MockCriteriaName03', 'MockDescription03', 'muito baixo', 'muito baixo', 2);
 
 
 

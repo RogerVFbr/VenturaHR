@@ -41,15 +41,14 @@ public abstract class ValueVaultService {
     }
 
     private void fetchData() {
-        RESOURCES.put("COMPANY_LOGO_TEXT", "Ventura HR");
-        RESOURCES.put("PAGE_FOOTER_TEXT", "@Copyright Ventura HR.");
         RESOURCES.put("MEMBER_BENEFITS", "Sed ut perspiciatis unde omnis iste natus " +
             "error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa " +
             "quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. " +
             "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " +
             "consequuntur magni dolores eos velit esse quam nihil molestiae consequatur, " +
             "vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
-        RESOURCES.put("SIGN_UP_FORM_TITLE", "Criação de Conta - Cadastramento de usuário");
+        RESOURCES.put("SYSTEM_MESSAGES", "Lembre-se que é possível recomendar uma vaga aos seus " +
+            "amigos, basta informar os seus e-mails.");
 
         LOG.info("StringResources updated. Resources fetched: {}", RESOURCES.size());
     }

@@ -1,0 +1,45 @@
+// POST NEW VAGA
+POST {{BASE_URL}}publish-vaga
+Content-Type: application/json
+
+{
+  "ownerId": 6,
+  "shortDescription": "TestMockShortDescription",
+  "longDescription": "TestMockLongDescription",
+  "city": "TestMockCity",
+  "state": "TestMockState",
+  "type": "CLT",
+  "timeSpan": "20 meses",
+  "expirationDate": "2021-12-10T00:00:00",
+  "vagaCriterios": [
+    {
+      "name": "TestMockName01",
+      "description": "TestMockDescription01",
+      "pmd": "BAIXO",
+      "weight": "ALTO",
+      "position": 0
+    },
+    {
+      "name": "TestMockName02",
+      "description": "TestMockDescription02",
+      "pmd": "MUITO_BAIXO",
+      "weight": "MUITO_ALTO",
+      "position": 1
+    },
+    {
+      "name": "TestMockName03",
+      "description": "TestMockDescription03",
+      "pmd": "MEDIO",
+      "weight": "MEDIO",
+      "position": 2
+    }
+  ]
+}
+
+> {%
+    client.test("Sign In View - REQUEST SIGN IN", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###

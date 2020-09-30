@@ -1,13 +1,13 @@
 package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
-public enum VagaStatus {
-    ABERTO(0, "aberto"),
-    ENCERRADO(1, "encerrado");
+public enum VagaType {
+    CLT(0, "CLT"),
+    PJ(1, "PJ");
 
     private final int id;
     private final String description;
 
-    VagaStatus(int id, String description) {
+    VagaType(int id, String description) {
         this.id = id;
         this.description = description;
     }

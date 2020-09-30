@@ -1,0 +1,59 @@
+// GET ADMINS
+GET {{BASE_URL}}users/admins
+Content-Type: application/json
+
+> {%
+    client.test("Get All Admins", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// GET CANDIDATOS
+GET {{BASE_URL}}users/candidatos
+Content-Type: application/json
+
+> {%
+    client.test("Get All Candidatos", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// GET CANDIDATOS BY ID
+GET {{BASE_URL}}users/candidatos/2
+Content-Type: application/json
+
+> {%
+    client.test("Get All Candidatos", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// GET VAGAS
+GET {{BASE_URL}}vagas
+Content-Type: application/json
+
+> {%
+    client.test("Get All Vagas", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// GET VAGA BY ID
+GET {{BASE_URL}}vagas/1
+Content-Type: application/json
+
+> {%
+    client.test("Get Vaga By Id", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###

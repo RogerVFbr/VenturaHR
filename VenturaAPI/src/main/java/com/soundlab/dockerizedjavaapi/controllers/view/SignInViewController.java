@@ -2,7 +2,7 @@ package com.soundlab.dockerizedjavaapi.controllers.view;
 
 import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewRequestAuth;
 import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseContent;
-import com.soundlab.dockerizedjavaapi.core.view.ViewResponseUser;
+import com.soundlab.dockerizedjavaapi.core.view.ViewResponseUserLight;
 import com.soundlab.dockerizedjavaapi.services.view.SignInViewService;
 
 import org.springframework.http.ResponseEntity;
@@ -26,8 +26,8 @@ public class SignInViewController {
     }
 
     @PostMapping("/sign-in/auth")
-    public ResponseEntity<ViewResponseUser> requestSignIn(@RequestBody SignInViewRequestAuth authRequest) {
-        ViewResponseUser user = signInViewService.requestSignIn(authRequest.getEmail(), authRequest.getPassword());
+    public ResponseEntity<ViewResponseUserLight> requestSignIn(@RequestBody SignInViewRequestAuth authRequest) {
+        ViewResponseUserLight user = signInViewService.requestSignIn(authRequest.getEmail(), authRequest.getPassword());
         return ResponseEntity.ok(user);
     }
 }

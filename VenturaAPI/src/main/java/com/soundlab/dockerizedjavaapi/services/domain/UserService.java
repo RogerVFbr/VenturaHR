@@ -5,6 +5,8 @@ import com.soundlab.dockerizedjavaapi.repositories.UserRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService extends GenericService<UserRepository, User> {
     public UserService(UserRepository userRepository) {
@@ -12,14 +14,10 @@ public class UserService extends GenericService<UserRepository, User> {
     }
 
     public <T> T findByEmail(String email, Class<T> type) {
-        return repository.findUserByEmail(email, type);
+        return repository.findByEmail(email, type);
     }
 
-    public User findByEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
-    public User findByDocumentId(String documentId) {
-        return repository.findByDocumentId(documentId);
+    public Optional<User> findByDocumentIdOrEmail(String documentId, String email) {
+        return repository.findByDocumentIdOrEmail(documentId, email);
     }
 }
