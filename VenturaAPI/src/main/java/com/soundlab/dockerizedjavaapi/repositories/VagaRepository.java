@@ -22,20 +22,44 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
 
     <T> List<T> findByOwnerId(Long userId, Class<T> type);
 
+    <T> T findById(Long id, Class<T> type);
+
     @Query("SELECT v FROM Vaga v WHERE " +
         "v.expirationDate > :currentDate AND LOWER(v.shortDescription) LIKE LOWER(CONCAT('%', :search, '%')) " +
         "OR v.expirationDate > :currentDate AND LOWER(v.longDescription) LIKE LOWER(CONCAT('%', :search, '%')) " +
         "ORDER BY v.dateCreated DESC")
     <T> List<T> findContaining(LocalDateTime currentDate, String search, Class<T> type);
 
+    <T> List<T> findByExpirationDateAfterAndShortDescriptionContainsIgnoreCaseOrExpirationDateAfterAndLongDescriptionContainsIgnoreCaseOrderByDateCreatedDesc(
+                                                                       LocalDateTime currentDate1,
+                                                                       String search1,
+                                                                       LocalDateTime currentDate2,
+                                                                       String search2,
+                                                                       Class<T> type);
+
     default <T> List<T> findActiveContainingAll(String search, Class<T> type) {
-        return findContaining(LocalDateTime.now(), search, type);
+        return findByExpirationDateAfterAndShortDescriptionContainsIgnoreCaseOrExpirationDateAfterAndLongDescriptionContainsIgnoreCaseOrderByDateCreatedDesc(
+            LocalDateTime.now(),
+            search,
+            LocalDateTime.now(),
+            search,
+            type);
     }
 
     default <T> List<T> findActiveContainingAny(String search, Class<T> type) {
         List<String> params = Arrays.asList(search.split(" "));
         Set<T> result = new HashSet<>();
-        params.forEach(param -> result.addAll(findContaining(LocalDateTime.now(), param, type)));
+        params.forEach(param ->
+            result
+                .addAll(
+                    findByExpirationDateAfterAndShortDescriptionContainsIgnoreCaseOrExpirationDateAfterAndLongDescriptionContainsIgnoreCaseOrderByDateCreatedDesc(
+                        LocalDateTime.now(),
+                        param,
+                        LocalDateTime.now(),
+                        param,
+                        type)
+                )
+        );
         return new ArrayList<>(result);
     }
 

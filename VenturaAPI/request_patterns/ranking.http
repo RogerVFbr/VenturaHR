@@ -1,0 +1,11 @@
+// GET RANKING By ID
+GET {{BASE_URL}}ranking/1
+Content-Type: application/json
+
+> {%
+    client.test("Get Ranking By Id", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###

@@ -43,10 +43,7 @@ public abstract class ValueVaultService {
     private void fetchData() {
         RESOURCES.put("MEMBER_BENEFITS", "Sed ut perspiciatis unde omnis iste natus " +
             "error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa " +
-            "quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. " +
-            "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia " +
-            "consequuntur magni dolores eos velit esse quam nihil molestiae consequatur, " +
-            "vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
+            "quae ab illo inventore veritatis et quasi architecto beatae vitae?");
         RESOURCES.put("SYSTEM_MESSAGES", "Lembre-se que é possível recomendar uma vaga aos seus " +
             "amigos, basta informar os seus e-mails.");
 

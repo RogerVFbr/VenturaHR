@@ -1,9 +1,12 @@
 package com.soundlab.dockerizedjavaapi.core.view;
 
-public interface ViewResponseVagaLight {
-    Long getId();
-    String getShortDescription();
-    String getLongDescription();
-    String getCity();
-    String getState();
+import lombok.Value;
+
+@Value
+public class ViewResponseVagaLight {
+    Long id;
+    String shortDescription;
+    String longDescription;
+    String city;
+    String state;
 }

@@ -7,7 +7,10 @@ import java.time.LocalDateTime;
 public interface HomeViewResponseVaga {
     String getId();
     String getShortDescription();
+    String getLongDescription();
+    String getCity();
+    String getState();
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="dd/MM/yy")
     LocalDateTime getExpirationDate();
 }

@@ -20,6 +20,7 @@ public abstract class GenericService<T extends JpaRepository<Z, Long>, Z> {
     }
 
     public Z save(Z obj) {
+        System.out.println(obj);
         return repository.save(obj);
     }
 

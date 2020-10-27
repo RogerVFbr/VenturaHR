@@ -29,6 +29,10 @@ public class VagaService extends GenericService<VagaRepository, Vaga> {
         return repository.findByOwnerId(userId, type);
     }
 
+    public <T> T findById(Long id, Class<T> type) {
+        return repository.findById(id, type);
+    }
+
     public <T> List<T> listByInclusionType(String search, SearchType searchType, Class<T> type) {
         switch(searchType) {
             case ALL:

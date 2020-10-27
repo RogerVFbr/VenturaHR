@@ -70,8 +70,7 @@ public class Vaga extends AuditableEntity {
 
     @JsonProperty("respostasCount")
     public int getRespostasCount() {
-        if (respostas != null)
-            return respostas.size();
+        if (respostas != null) return respostas.size();
         return 0;
     }
 

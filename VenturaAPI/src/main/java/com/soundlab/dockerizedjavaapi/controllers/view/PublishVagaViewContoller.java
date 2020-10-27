@@ -17,9 +17,9 @@ public class PublishVagaViewContoller {
     public PublishVagaViewContoller(PublishVagaViewService publishVagaViewService) {
         this.publishVagaViewService = publishVagaViewService;
     }
+
     @PostMapping("/publish-vaga")
     public ResponseEntity<Vaga> requestSignUp(@RequestBody PublishVagaViewRequestVaga vaga) {
-        Vaga newVaga = publishVagaViewService.publishVaga(vaga);
-        return ResponseEntity.ok(newVaga);
+        return ResponseEntity.ok(publishVagaViewService.publishVaga(vaga));
     }
 }

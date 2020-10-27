@@ -11,7 +11,7 @@ Content-Type: application/json
 ###
 
 // SEARCH ALL
-GET {{BASE_URL}}home/candidato/content/search/1
+POST {{BASE_URL}}home/empresa/content/search/1
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 ###
 
 // SEARCH ANY
-GET {{BASE_URL}}home/candidato/content/search/1
+POST {{BASE_URL}}home/candidato/content/search/1
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Content-Type: application/json
 ###
 
 // SEARCH NONE
-GET {{BASE_URL}}home/candidato/content/search/1
+POST {{BASE_URL}}home/empresa/content/search/1
 Content-Type: application/json
 
 {

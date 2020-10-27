@@ -1,0 +1,32 @@
+// RESPONDER VAGA
+POST {{BASE_URL}}responder-vaga
+Content-Type: application/json
+
+{
+  "vagaId": 1,
+  "candidatoId": 1,
+  "curriculoUrl": "MockCurriculoUrl",
+  "textContent": "MockTextContent",
+  "respostasCriterios": [
+    {
+      "criterio_id": 1,
+      "level": "MEDIO"
+    },
+    {
+      "criterio_id": 2,
+      "level": "ALTO"
+    },
+    {
+      "criterio_id": 3,
+      "level": "BAIXO"
+    }
+  ]
+}
+
+> {%
+    client.test("Responder Vaga View - REQUEST ASWER", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###

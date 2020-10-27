@@ -11,6 +11,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class HomeViewResponseContent {
     private String messages;
-    private List<HomeViewResponseVaga> vagasRespondidas;
+    private List<HomeViewResponseVaga> vagasUsuario;
     private List<ViewResponseVagaLight> vagasBusca;
 }

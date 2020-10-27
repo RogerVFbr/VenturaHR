@@ -1,8 +1,8 @@
 package com.soundlab.dockerizedjavaapi.controllers.view;
 
+import com.soundlab.dockerizedjavaapi.core.view.ViewResponseUserLight;
 import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewRequestAuth;
 import com.soundlab.dockerizedjavaapi.core.view.signin.SignInViewResponseContent;
-import com.soundlab.dockerizedjavaapi.core.view.ViewResponseUserLight;
 import com.soundlab.dockerizedjavaapi.services.view.SignInViewService;
 
 import org.springframework.http.ResponseEntity;
