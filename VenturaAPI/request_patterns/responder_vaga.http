@@ -1,3 +1,15 @@
+// GET RESPONDER VAGA CONTENT By ID
+GET {{BASE_URL}}responder-vaga/1
+Content-Type: application/json
+
+> {%
+    client.test("Get Ranking By Id", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
 // RESPONDER VAGA
 POST {{BASE_URL}}responder-vaga
 Content-Type: application/json

@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ResponderVagaController {
+public class ResponderVagaViewController {
 
     ResponderVagaViewService responderVagaViewService;
 
-    public ResponderVagaController(ResponderVagaViewService responderVagaViewService) {
+    public ResponderVagaViewController(ResponderVagaViewService responderVagaViewService) {
         this.responderVagaViewService = responderVagaViewService;
     }
 

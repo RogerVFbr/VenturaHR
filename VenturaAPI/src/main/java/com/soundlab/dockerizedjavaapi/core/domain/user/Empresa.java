@@ -1,5 +1,6 @@
 package com.soundlab.dockerizedjavaapi.core.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.soundlab.dockerizedjavaapi.core.domain.vaga.Vaga;
 
 import java.util.List;
@@ -15,13 +16,13 @@ import lombok.Data;
 
 @Data
 @Entity
-//@Table(name = "users")
 @DiscriminatorValue(value="empresa")
 public class Empresa extends User {
 
     @Column(name = "razao_social")
     private String razaoSocial;
 
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "owner_id")
     List<Vaga> vagas;

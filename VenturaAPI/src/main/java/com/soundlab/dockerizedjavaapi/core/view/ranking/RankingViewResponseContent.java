@@ -15,5 +15,5 @@ public interface RankingViewResponseContent {
     @JsonFormat(pattern="dd/MM/yy")
     LocalDateTime getExpirationDate();
     Double getPerfil();
-    List<RankingViewResponseResposta> getRespostas();
+    List<RankingViewResponseRespostaLight> getRespostas();
 }

@@ -17,7 +17,6 @@ public class SignInViewService {
     private final UserService userService;
     private final StringResourcesService stringResourcesService;
 
-
     public SignInViewService(VagaService vagaService,
                              UserService userService,
                              StringResourcesService stringResourcesService) {

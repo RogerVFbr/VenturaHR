@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public interface VagaRepository extends JpaRepository<Vaga, Long> {
     <T> List<T> findByExpirationDateIsAfter(LocalDateTime expirationDate, Class<T> type);
 
-    <T> List<T> findTop10ByExpirationDateIsAfterOrderByDateCreatedDesc(LocalDateTime expirationDate, Class<T> type);
+    <T> List<T> findTop8ByExpirationDateIsAfterOrderByDateCreatedDesc(LocalDateTime expirationDate, Class<T> type);
 
     <T> List<T> findByRespostas_candidatoIdEqualsOrderByExpirationDateDesc(Long userId, Class<T> type);
 

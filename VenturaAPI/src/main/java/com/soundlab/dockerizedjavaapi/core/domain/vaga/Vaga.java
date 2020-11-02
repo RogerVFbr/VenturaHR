@@ -1,8 +1,10 @@
 package com.soundlab.dockerizedjavaapi.core.domain.vaga;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.soundlab.dockerizedjavaapi.core.AuditableEntity;
 import com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta;
+import com.soundlab.dockerizedjavaapi.core.domain.user.Empresa;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -36,6 +39,11 @@ public class Vaga extends AuditableEntity {
 
     @Column(name = "owner_id")
     private Long ownerId;
+
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id", insertable = false, updatable = false)
+    private Empresa owner;
 
     @Column(name = "short_description")
     private String shortDescription;

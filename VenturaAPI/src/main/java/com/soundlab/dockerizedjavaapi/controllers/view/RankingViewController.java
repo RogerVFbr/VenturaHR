@@ -1,6 +1,7 @@
 package com.soundlab.dockerizedjavaapi.controllers.view;
 
 import com.soundlab.dockerizedjavaapi.core.view.ranking.RankingViewResponseContent;
+import com.soundlab.dockerizedjavaapi.core.view.ranking.RankingViewResponseResposta;
 import com.soundlab.dockerizedjavaapi.services.view.RankingViewService;
 
 import org.springframework.http.ResponseEntity;
@@ -20,5 +21,10 @@ public class RankingViewController {
     @GetMapping("/ranking/{id}")
     public ResponseEntity<RankingViewResponseContent> getContent(@PathVariable long id) {
         return ResponseEntity.ok(rankingViewService.getContent(id));
+    }
+
+    @GetMapping("/ranking/resposta/{id}")
+    public ResponseEntity<RankingViewResponseResposta> getResposta(@PathVariable long id) {
+        return ResponseEntity.ok(rankingViewService.getResposta(id));
     }
 }

@@ -63,34 +63,37 @@ public class Resposta extends AuditableEntity {
 
     @JsonProperty("perfil_resposta")
     public Double getPerfilResposta() {
-
-        if (respostasCriterios.isEmpty()) return 0D;
-
-        double somaDosPesos = respostasCriterios.stream()
-            .mapToDouble(
-                resposta -> resposta
-                    .getVagaCriterio()
-                    .getWeight()
-                    .getLevelValue()
-            )
-            .sum();
-
-        double somaMultiplosPmdPeso = respostasCriterios.stream()
-            .mapToDouble(
-                resposta ->
-                    resposta
-                        .getLevel()
-                        .getLevelValue()
-                        * resposta
+        try {
+            double somaDosPesos = respostasCriterios.stream()
+                .mapToDouble(
+                    resposta -> resposta
                         .getVagaCriterio()
                         .getWeight()
                         .getLevelValue()
-            )
-            .sum();
+                )
+                .sum();
 
-        double result = somaMultiplosPmdPeso / somaDosPesos;
+            double somaMultiplosPmdPeso = respostasCriterios.stream()
+                .mapToDouble(
+                    resposta ->
+                        resposta
+                            .getLevel()
+                            .getLevelValue()
+                            *
+                            resposta
+                                .getVagaCriterio()
+                                .getWeight()
+                                .getLevelValue()
+                )
+                .sum();
 
-        BigDecimal bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
-        return bd.doubleValue();
+            double result = somaMultiplosPmdPeso / somaDosPesos;
+
+            BigDecimal bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN);
+            return bd.doubleValue();
+
+        } catch (Exception e) {
+            return 0D;
+        }
     }
 }

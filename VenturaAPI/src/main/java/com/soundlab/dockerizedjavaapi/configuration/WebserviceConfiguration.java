@@ -2,7 +2,6 @@ package com.soundlab.dockerizedjavaapi.configuration;
 
 import com.soundlab.dockerizedjavaapi.mappers.CandidatoFromSignUpRequestUserMapper;
 import com.soundlab.dockerizedjavaapi.mappers.EmpresaFromSignUpRequestUserMapper;
-import com.soundlab.dockerizedjavaapi.mappers.ResponderVagaViewResponseContentFromVaga;
 import com.soundlab.dockerizedjavaapi.mappers.RespostaFromResponderVagaViewRequestResposta;
 import com.soundlab.dockerizedjavaapi.mappers.VagaFromPublishVagaViewRequestVaga;
 
@@ -23,7 +22,7 @@ class WebserviceConfiguration implements WebMvcConfigurer {
         modelMapper.addMappings(new CandidatoFromSignUpRequestUserMapper());
         modelMapper.addMappings(new VagaFromPublishVagaViewRequestVaga());
         modelMapper.addMappings(new RespostaFromResponderVagaViewRequestResposta());
-        modelMapper.addMappings(new ResponderVagaViewResponseContentFromVaga());
+//        modelMapper.addMappings(new ResponderVagaViewResponseContentFromVaga());
         return modelMapper;
     }
 

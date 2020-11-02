@@ -26,8 +26,7 @@ public class SignInViewController {
     }
 
     @PostMapping("/sign-in/auth")
-    public ResponseEntity<ViewResponseUserLight> requestSignIn(@RequestBody SignInViewRequestAuth authRequest) {
-        ViewResponseUserLight user = signInViewService.requestSignIn(authRequest.getEmail(), authRequest.getPassword());
-        return ResponseEntity.ok(user);
+    public ResponseEntity<ViewResponseUserLight> requestSignIn(@RequestBody SignInViewRequestAuth request) {
+        return ResponseEntity.ok(signInViewService.requestSignIn(request.getEmail(), request.getPassword()));
     }
 }

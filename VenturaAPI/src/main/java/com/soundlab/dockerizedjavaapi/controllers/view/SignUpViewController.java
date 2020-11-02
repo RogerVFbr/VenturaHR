@@ -20,7 +20,6 @@ public class SignUpViewController {
 
     @PostMapping("/sign-up/register")
     public ResponseEntity<ViewResponseUserLight> requestSignUp(@RequestBody SignUpViewRequestUser signUpRequest) {
-        ViewResponseUserLight user = signUpViewService.requestSignUp(signUpRequest);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(signUpViewService.requestSignUp(signUpRequest));
     }
 }

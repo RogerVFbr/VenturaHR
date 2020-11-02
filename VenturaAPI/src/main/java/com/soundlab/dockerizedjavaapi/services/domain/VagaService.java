@@ -17,7 +17,7 @@ public class VagaService extends GenericService<VagaRepository, Vaga> {
     }
 
     public <T> List<T> listLatestAvailable(Class<T> type) {
-        return repository.findTop10ByExpirationDateIsAfterOrderByDateCreatedDesc(
+        return repository.findTop8ByExpirationDateIsAfterOrderByDateCreatedDesc(
             LocalDateTime.now(), type);
     }
 
@@ -34,9 +34,9 @@ public class VagaService extends GenericService<VagaRepository, Vaga> {
     }
 
     public <T> List<T> listByInclusionType(String search, SearchType searchType, Class<T> type) {
-        switch(searchType) {
+        switch (searchType) {
             case ALL:
-                 return repository.findActiveContainingAll(search, type);
+                return repository.findActiveContainingAll(search, type);
             case ANY:
                 return repository.findActiveContainingAny(search, type);
             case NONE:

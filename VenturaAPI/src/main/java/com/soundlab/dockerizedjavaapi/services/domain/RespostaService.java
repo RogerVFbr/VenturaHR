@@ -10,4 +10,8 @@ public class RespostaService extends GenericService<RespostaRepository, Resposta
     public RespostaService(RespostaRepository respostaRepository) {
         super(respostaRepository);
     }
+
+    public <T> T findById(Long id, Class<T> type) {
+        return repository.findById(id, type);
+    }
 }

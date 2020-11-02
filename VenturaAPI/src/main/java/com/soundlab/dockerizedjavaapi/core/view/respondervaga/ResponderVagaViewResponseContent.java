@@ -6,18 +6,15 @@ import com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaType;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import lombok.Data;
-
-@Data
-public class ResponderVagaViewResponseContent {
-    private Long id;
-    private String ownerName;
-    private String shortDescription;
-    private String longDescription;
-    private String city;
-    private String state;
-    private VagaType type;
-    private String timeSpan;
-    private LocalDateTime expirationDate;
-    private List<VagaCriterio> vagaCriterios;
+public interface ResponderVagaViewResponseContent {
+    Long getId();
+    ResponderVagaViewRequestEmpresa getOwner();
+    String getShortDescription();
+    String getLongDescription();
+    String getCity();
+    String getState();
+    VagaType getType();
+    String getTimeSpan();
+    LocalDateTime getExpirationDate();
+    List<VagaCriterio> getVagaCriterios();
 }
