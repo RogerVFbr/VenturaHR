@@ -1,0 +1,30 @@
+service: ventura-api
+
+provider:
+  name: aws
+  runtime: java8
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: "*"
+
+package:
+  artifact: target/dockerizedjavaapi-0.0.1-SNAPSHOT.jar
+
+functions:
+  springHandler:
+    handler: com.soundlab.dockerizedjavaapi.configuration.StreamLambdaHandler
+    timeout: 120
+    warmup: true
+    events:
+      - http:
+          path: /{any+}
+          method: ANY
+
+custom:
+  warmup:
+    prewarm: true
+
+plugins:
+  - serverless-plugin-warmup

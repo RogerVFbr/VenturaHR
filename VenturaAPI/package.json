@@ -1,0 +1,19 @@
+{
+  "name": "venturaapi",
+  "version": "1.0.0",
+  "description": "API para gerenciamento do backend do aplicativo VenturaHR.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "deploy": "mvn clean package && sls deploy --aws-profile roger_default",
+    "remove": "sls remove --aws-profile roger_default",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-plugin-warmup": "^4.9.0"
+  }
+}

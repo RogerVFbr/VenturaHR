@@ -75,7 +75,7 @@ VALUES (1, 6, 'Gerente de Projetos Sênior', 'Sed ut perspiciatis unde omnis ist
         @TIME_IN_15_DAYS),
        (8, 8, 'Executivo financeiro', 'Maecenas malesuada aliquam neque, ut venenatis arcu faucibus vel. Vestibulum id tempus sapien. Nulla dignissim turpis lacus, at dictum ex tempus eu.', 'Fortaleza', 'CE', 'PJ', '6 meses',
         @TIME_YESTERDAY),
-       (9, 9, 'Motorista', 'Duis scelerisque dignissim felis, at egestas libero luctus ut. Sed iaculis ipsum est, et consectetur erat viverra a. Quisque pharetra, tellus eu maximus tincidunt, ante libero fringilla magna, nec dignissim tortor lectus id ipsum. Donec at mattis justo. Etiam pulvinar interdum lacus ut consectetur. Duis id nisi augue. Aenean nisl nibh, fringilla et facilisis id, pulvinar nec libero. Integer at luctus ipsum, eu posuere est.', 'Belo Horizonte', 'MG', 'CLT', 'Permanente',
+       (9, 8, 'Motorista', 'Duis scelerisque dignissim felis, at egestas libero luctus ut. Sed iaculis ipsum est, et consectetur erat viverra a. Quisque pharetra, tellus eu maximus tincidunt, ante libero fringilla magna, nec dignissim tortor lectus id ipsum. Donec at mattis justo. Etiam pulvinar interdum lacus ut consectetur. Duis id nisi augue. Aenean nisl nibh, fringilla et facilisis id, pulvinar nec libero. Integer at luctus ipsum, eu posuere est.', 'Belo Horizonte', 'MG', 'CLT', 'Permanente',
         @TIME_IN_15_DAYS);
 
 DROP TABLE IF EXISTS respostas CASCADE;

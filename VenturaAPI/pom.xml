@@ -12,7 +12,7 @@
     <groupId>com.soundlab</groupId>
     <artifactId>dockerizedjavaapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dockerizedjavaapi</name>
+    <name>dockerized-java-api</name>
     <description>Dockerized Java API</description>
 
     <properties>
@@ -53,12 +53,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -125,29 +119,53 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
                 <configuration>
-                    <includes>
-                        <include>**/*Test*.java</include>
-                    </includes>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
-                            <goal>repackage</goal>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.soundlab.dockerizedjavaapi.DockerizedJavaApiApplication</mainClass>
-                            <outputDirectory>${project.basedir}/docker</outputDirectory>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>org.apache.tomcat.embed:*</exclude>
+                                </excludes>
+                            </artifactSet>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <mainClass>com.soundlab.dockerizedjavaapi.DockerizedJavaApiApplication</mainClass>-->
+<!--                            <outputDirectory>${project.basedir}/docker</outputDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
         </plugins>
     </build>
+
+
+
+
+
+
+
+
 
 </project>

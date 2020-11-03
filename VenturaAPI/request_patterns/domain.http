@@ -34,6 +34,30 @@ Content-Type: application/json
 
 ###
 
+// GET EMPRESAS
+GET {{BASE_URL}}users/empresas
+Content-Type: application/json
+
+> {%
+    client.test("Get All Empresas", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+// GET EMPRESAS BY ID
+GET {{BASE_URL}}users/empresas/6
+Content-Type: application/json
+
+> {%
+    client.test("Get Empresa By Id", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
 // GET VAGAS
 GET {{BASE_URL}}vagas
 Content-Type: application/json
