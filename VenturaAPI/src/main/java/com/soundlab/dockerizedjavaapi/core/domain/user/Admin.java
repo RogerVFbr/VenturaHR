@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 @Entity
-//@Table(name = "users")
 @DiscriminatorValue(value="administrador")
 public class Admin extends User {
 }

@@ -16,5 +16,4 @@ public class StringResourcesService extends ValueVaultService {
     public String getSystemMessages() {
         return getResource("SYSTEM_MESSAGES");
     }
-
 }
