@@ -99,6 +99,7 @@ Documentação UI (Swagger/OpenApi)
 ```
 http://localhost:8080/api/swagger-ui.html
 ```
+![OpenApi/Swagger](img/swagger.png?raw=true)
 Definição OpenApi (JSON)
 ```
 http://localhost:8080/api/api-docs
@@ -134,12 +135,12 @@ http://localhost:8080/api/h2-console
 ![H2 Database Screenshot](img/h2_screenshot.png?raw=true)
 
 ## Testes automatizados
-####Testes unitários:
+#### Testes unitários:
 ```
 mvn test
 ```
 
-#### Testes de integração
+#### Testes de integração (manuais)
 Utilize a interface do Swagger para realizar testes de integração customizados.
 ```
 http://localhost:8080/api/swagger-ui.html

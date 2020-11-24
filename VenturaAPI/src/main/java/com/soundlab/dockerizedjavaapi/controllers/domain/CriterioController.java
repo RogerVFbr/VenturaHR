@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(
+    name = "Domain: Critério",
+    description = "Gerencia critérios de vagas."
+)
 public class CriterioController {
     private final CriterioService criterioService;
 

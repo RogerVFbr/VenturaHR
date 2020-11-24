@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(
+    name = "Domain: Users - Empresas",
+    description = "Gerencia usuários do tipo 'Empresa' e projeções."
+)
 public class EmpresaController {
     private final EmpresaService empresaService;
 

@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(
+    name = "Domain: Vagas",
+    description = "Gerencia vagas publicadas."
+)
 public class VagaController {
     private final VagaService vagaService;
 
