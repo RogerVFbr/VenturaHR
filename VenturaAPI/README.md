@@ -104,7 +104,6 @@ Definição OpenApi (JSON)
 ```
 http://localhost:8080/api/api-docs
 ```
-Utilize a interface do Swagger para realizar testes de integração.
 
 ## Deploy
 1. Instale o *Serverless Framework* caso ainda não tenha feito.
