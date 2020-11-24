@@ -1,26 +1,29 @@
 @startuml
 
-title __RESPOSTA's Class Diagram__\n
+title __CORE DOMAIN RESPOSTA's Class Diagram__\n
 
   namespace com.soundlab.dockerizedjavaapi {
     namespace core {
       namespace domain.resposta {
         class com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta {
-            ~ respostasCriterios : List<RespostaCriterio>
             - candidatoId : Long
             - curriculoUrl : String
             - id : Long
+            - respostasCriterios : List<RespostaCriterio>
             - textContent : String
             - vagaId : Long
             + Resposta()
             + equals()
+            + getCandidato()
             + getCandidatoId()
             + getCurriculoUrl()
             + getId()
+            + getPerfilResposta()
             + getRespostasCriterios()
             + getTextContent()
             + getVagaId()
             + hashCode()
+            + setCandidato()
             + setCandidatoId()
             + setCurriculoUrl()
             + setId()
@@ -40,27 +43,18 @@ title __RESPOSTA's Class Diagram__\n
       namespace domain.resposta {
         class com.soundlab.dockerizedjavaapi.core.domain.resposta.RespostaCriterio {
             - criterioId : Long
-            - dateCreated : LocalDateTime
-            - dateModified : LocalDateTime
             - id : Long
-            - respostaId : Long
             + RespostaCriterio()
             + equals()
-            + getCriterio()
             + getCriterioId()
-            + getDateCreated()
-            + getDateModified()
             + getId()
             + getLevel()
-            + getRespostaId()
+            + getVagaCriterio()
             + hashCode()
-            + setCriterio()
             + setCriterioId()
-            + setDateCreated()
-            + setDateModified()
             + setId()
             + setLevel()
-            + setRespostaId()
+            + setVagaCriterio()
             + toString()
             # canEqual()
         }
@@ -70,9 +64,10 @@ title __RESPOSTA's Class Diagram__\n
   
 
   com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta -up-|> com.soundlab.dockerizedjavaapi.core.AuditableEntity
+  com.soundlab.dockerizedjavaapi.core.domain.resposta.Resposta o-- com.soundlab.dockerizedjavaapi.core.domain.user.Candidato : candidato
   com.soundlab.dockerizedjavaapi.core.domain.resposta.RespostaCriterio -up-|> com.soundlab.dockerizedjavaapi.core.AuditableEntity
-  com.soundlab.dockerizedjavaapi.core.domain.resposta.RespostaCriterio o-- com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaCriterio : vagaCriterio
   com.soundlab.dockerizedjavaapi.core.domain.resposta.RespostaCriterio o-- com.soundlab.dockerizedjavaapi.core.Level : level
+  com.soundlab.dockerizedjavaapi.core.domain.resposta.RespostaCriterio o-- com.soundlab.dockerizedjavaapi.core.domain.vaga.VagaCriterio : vagaCriterio
 
 
 right footer

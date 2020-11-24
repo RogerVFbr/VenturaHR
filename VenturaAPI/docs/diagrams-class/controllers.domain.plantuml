@@ -1,6 +1,6 @@
 @startuml
 
-title __DOMAIN's Class Diagram__\n
+title __DOMAIN CONTROLLERS's Class Diagram__\n
 
   namespace com.soundlab.dockerizedjavaapi {
     namespace controllers.domain {
@@ -32,8 +32,36 @@ title __DOMAIN's Class Diagram__\n
 
   namespace com.soundlab.dockerizedjavaapi {
     namespace controllers.domain {
+      class com.soundlab.dockerizedjavaapi.controllers.domain.CriterioController {
+          + CriterioController()
+          ~ delete()
+          ~ findAll()
+          ~ getById()
+          ~ save()
+          ~ update()
+      }
+    }
+  }
+  
+
+  namespace com.soundlab.dockerizedjavaapi {
+    namespace controllers.domain {
       class com.soundlab.dockerizedjavaapi.controllers.domain.EmpresaController {
           + EmpresaController()
+          ~ delete()
+          ~ findAll()
+          ~ getById()
+          ~ save()
+          ~ update()
+      }
+    }
+  }
+  
+
+  namespace com.soundlab.dockerizedjavaapi {
+    namespace controllers.domain {
+      class com.soundlab.dockerizedjavaapi.controllers.domain.RespostaController {
+          + RespostaController()
           ~ delete()
           ~ findAll()
           ~ getById()
@@ -60,7 +88,9 @@ title __DOMAIN's Class Diagram__\n
 
   com.soundlab.dockerizedjavaapi.controllers.domain.AdminController o-- com.soundlab.dockerizedjavaapi.services.domain.AdminService : adminService
   com.soundlab.dockerizedjavaapi.controllers.domain.CandidatoController o-- com.soundlab.dockerizedjavaapi.services.domain.CandidatoService : candidatoService
+  com.soundlab.dockerizedjavaapi.controllers.domain.CriterioController o-- com.soundlab.dockerizedjavaapi.services.domain.CriterioService : criterioService
   com.soundlab.dockerizedjavaapi.controllers.domain.EmpresaController o-- com.soundlab.dockerizedjavaapi.services.domain.EmpresaService : empresaService
+  com.soundlab.dockerizedjavaapi.controllers.domain.RespostaController o-- com.soundlab.dockerizedjavaapi.services.domain.RespostaService : respostaService
   com.soundlab.dockerizedjavaapi.controllers.domain.VagaController o-- com.soundlab.dockerizedjavaapi.services.domain.VagaService : vagaService
 
 

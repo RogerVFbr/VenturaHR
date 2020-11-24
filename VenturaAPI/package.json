@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "set-service-credentials": "sls config credentials --provider aws --profile roger_default",
     "deploy": "mvn clean package && sls deploy --aws-profile roger_default",
     "remove": "sls remove --aws-profile roger_default",
     "test": "echo \"Error: no test specified\" && exit 1"

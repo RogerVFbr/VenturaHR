@@ -1,16 +1,16 @@
 @startuml
 
-title __USER's Class Diagram__\n
+title __CORE DOMAIN USER's Class Diagram__\n
 
   namespace com.soundlab.dockerizedjavaapi {
     namespace core {
       namespace domain.user {
         class com.soundlab.dockerizedjavaapi.core.domain.user.Admin {
-'            + Admin()
-'            + equals()
-'            + hashCode()
-'            + toString()
-'            # canEqual()
+            + Admin()
+            + equals()
+            + hashCode()
+            + toString()
+            # canEqual()
         }
       }
     }
@@ -22,13 +22,13 @@ title __USER's Class Diagram__\n
       namespace domain.user {
         class com.soundlab.dockerizedjavaapi.core.domain.user.Candidato {
             - respostas : List<Resposta>
-'            + Candidato()
-'            + equals()
-'            + getRespostas()
-'            + hashCode()
-'            + setRespostas()
-'            + toString()
-'            # canEqual()
+            + Candidato()
+            + equals()
+            + getRespostas()
+            + hashCode()
+            + setRespostas()
+            + toString()
+            # canEqual()
         }
       }
     }
@@ -40,13 +40,27 @@ title __USER's Class Diagram__\n
       namespace domain.user {
         class com.soundlab.dockerizedjavaapi.core.domain.user.Empresa {
             ~ vagas : List<Vaga>
-'            + Empresa()
-'            + equals()
-'            + getVagas()
-'            + hashCode()
-'            + setVagas()
-'            + toString()
-'            # canEqual()
+            - razaoSocial : String
+            + Empresa()
+            + equals()
+            + getRazaoSocial()
+            + getVagas()
+            + hashCode()
+            + setRazaoSocial()
+            + setVagas()
+            + toString()
+            # canEqual()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.soundlab.dockerizedjavaapi {
+    namespace core {
+      namespace domain.user {
+        interface com.soundlab.dockerizedjavaapi.core.domain.user.IUserType {
+            {abstract} + getInstance()
         }
       }
     }
@@ -57,28 +71,34 @@ title __USER's Class Diagram__\n
     namespace core {
       namespace domain.user {
         class com.soundlab.dockerizedjavaapi.core.domain.user.User {
+            - address : String
             - documentId : String
             - email : String
             - id : Long
             - name : String
             - password : String
-'            + User()
-'            + equals()
-'            + getDocumentId()
-'            + getEmail()
-'            + getId()
-'            + getName()
-'            + getPassword()
-'            + getUserType()
-'            + hashCode()
-'            + setDocumentId()
-'            + setEmail()
-'            + setId()
-'            + setName()
-'            + setPassword()
-'            + setUserType()
-'            + toString()
-'            # canEqual()
+            - phoneNumber : String
+            + User()
+            + equals()
+            + getAddress()
+            + getDocumentId()
+            + getEmail()
+            + getId()
+            + getName()
+            + getPassword()
+            + getPhoneNumber()
+            + getUserType()
+            + hashCode()
+            + setAddress()
+            + setDocumentId()
+            + setEmail()
+            + setId()
+            + setName()
+            + setPassword()
+            + setPhoneNumber()
+            + setUserType()
+            + toString()
+            # canEqual()
         }
       }
     }
@@ -105,6 +125,7 @@ title __USER's Class Diagram__\n
   com.soundlab.dockerizedjavaapi.core.domain.user.Empresa -up-|> com.soundlab.dockerizedjavaapi.core.domain.user.User
   com.soundlab.dockerizedjavaapi.core.domain.user.User -up-|> com.soundlab.dockerizedjavaapi.core.AuditableEntity
   com.soundlab.dockerizedjavaapi.core.domain.user.User o-- com.soundlab.dockerizedjavaapi.core.domain.user.UserType : userType
+  com.soundlab.dockerizedjavaapi.core.domain.user.UserType .up.|> com.soundlab.dockerizedjavaapi.core.domain.user.IUserType
 
 
 right footer
