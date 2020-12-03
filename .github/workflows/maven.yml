@@ -25,24 +25,22 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+    defaults:
+      run:
+        working-directory: ./VenturaAPI
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Download Node
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: cd VenturaAPI && npm ci
-    - name: package
-      working-directory: ./VenturaAPI
+        node-version: "12.x"
+    - name: Install Serverless Framework
+      run: npm install -g serverless
+    - name: Serverless Authentication
+      run: sls config credentials --provider aws --key ${{secrets.AWS_ACCESS_KEY_PERSONAL}} --secret ${{secrets.AWS_SECRET_ACCESS_KEY_PERSONAL}}
+    - name: Install NPM dependencies
+      run: npm i
+    - name: Maven package
       run: mvn clean package
-    - name: serverless deploy
-      uses: serverless/github-action@master
-      with:
-        working-directory: ./VenturaAPI
-        args: deploy
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PERSONAL }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PERSONAL }}
+    - name: Deploy to AWS
+      run: serverless deploy
