@@ -48,7 +48,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: cd VenturaAPI && npm ci
     - name: package
-    - run: mvn clean package
+      run: mvn clean package
     - name: serverless deploy
       uses: serverless/github-action@master
       with:
